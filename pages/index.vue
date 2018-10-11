@@ -1,76 +1,79 @@
 <template>
   <section>
     <Divider orientation="left">Sign In</Divider>
-    <Row>
-      <Col class='login-box' span="12" offset="6">
-        <Alert>
-          <h3 class="form-title">Welcome to BACK</h3>
-          <Form ref="formInline" :rules="ruleInline" >
-            <FormItem prop="user">
-              <Input type="text" placeholder="Username">
-                <Icon type="ios-person-outline" slot="prepend"></Icon>
-              </Input>
-            </FormItem>
-            <FormItem  prop="password">
-              <Input type="password"  placeholder="Password">
-                <Icon type="ios-lock-outline" slot="prepend"></Icon>
-              </Input>
-            </FormItem>
-            <FormItem >
-              <Row>
-                <Col span="6" offset="9">
-                  <Button type="success" long>Sign In</Button>
-                </Col>
-              </Row>
-            </FormItem>
-          </Form>
-        </Alert>
+    <Row class="bg-row">
+      <Col class='login-reg-box' span="12" offset="6">
+        <Card class="bg-card">
+          <Alert type="Content">
+            <h3 class="form-title">Welcome to BACK</h3>
+            <Form ref="formInline" :rules="ruleInline" >
+              <FormItem prop="user">
+                <Input type="text" placeholder="Username">
+                  <Icon type="ios-person-outline" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem  prop="password">
+                <Input type="password"  placeholder="Password">
+                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem >
+                <Row>
+                  <Col span="8" offset="8">
+                    <Button type="success" long>Sign In</Button>
+                  </Col>
+                </Row>
+              </FormItem>
+            </Form>
+          </Alert>
+        </Card>
+
       </Col>
     </Row>
 
     <Divider orientation="left">Registration</Divider>
 
-    <Row>
-      <Col class='login-box' span="12" offset="6">
-        <Alert type="success">
-          <h3 class="form-title">Become our MEMBER</h3>
-          <Form ref="formInline" :rules="ruleInline" >
-            <FormItem prop="user">
-              <Input type="text" placeholder="Username">
-                <Icon type="ios-person-outline" slot="prepend"></Icon>
-              </Input>
-            </FormItem>
-            <FormItem  prop="password">
-              <Input type="password"  placeholder="Password">
-                <Icon type="ios-lock-outline" slot="prepend"></Icon>
-              </Input>
-            </FormItem>
-            <FormItem  prop="password">
-              <Input type="password"  placeholder="Confirm Password">
-                <Icon type="ios-lock-outline" slot="prepend"></Icon>
-              </Input>
-            </FormItem>
-            <FormItem label="Register as">
-              <RadioGroup>
-                <Radio label="superAdmin">CIO</Radio>
-                <Radio label="admin">Staff</Radio>
-                <Radio label="student">Student</Radio>
-              </RadioGroup>
-            </FormItem>
-            <FormItem >
-              <Row>
-                <Col span="6" offset="9">
-                  <Button type="primary" long>Register</Button>
-                </Col>
-              </Row>
-            </FormItem>
-          </Form>
-        </Alert>
-      </Col>
+    <Row class="bg-row" >
+        <Col class='login-reg-box' span="12" offset="6">
+          <Card class="bg-card">
+
+          <Alert type="Content">
+            <h3 class="form-title">Become our MEMBER</h3>
+            <Form ref="formInline" :rules="ruleInline" >
+              <FormItem prop="user">
+                <Input type="text" placeholder="Username">
+                  <Icon type="ios-person-outline" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem  prop="password">
+                <Input type="password"  placeholder="Password">
+                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem  prop="password">
+                <Input type="password"  placeholder="Confirm Password">
+                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
+                </Input>
+              </FormItem>
+              <FormItem label="Register as">
+                <RadioGroup>
+                  <Radio label="superAdmin">CIO</Radio>
+                  <Radio label="admin">Staff</Radio>
+                  <Radio label="student">Student</Radio>
+                </RadioGroup>
+              </FormItem>
+              <FormItem >
+                <Row>
+                  <Col span="8" offset="8">
+                    <Button type="primary" long>Register</Button>
+                  </Col>
+                </Row>
+              </FormItem>
+            </Form>
+          </Alert>
+          </Card>
+        </Col>
     </Row>
-
-
-
   </section>
 
 </template>
@@ -98,9 +101,20 @@
 </script>
 
 <style scoped>
-  .login-box{
+  .bg-row{
+    background: linear-gradient(to right, #fff, #ddd);
+    padding: 20px;
+  }
+
+  .bg-card{
+    background: #ddd;
+    padding:10px;
+  }
+
+  .login-reg-box{
     margin-top: 20px;
     margin-bottom: 20px;
+
   }
 
   .form-title{

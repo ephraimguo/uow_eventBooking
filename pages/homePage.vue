@@ -8,12 +8,17 @@
             disable-time/>
       </no-ssr>
     </Card>
+    <EventList/>
   </section>
 </template>
 
 <script>
+  import EventList from '@/components/mainPage/EventList.vue'
   export default {
-    name: "homePage"
+    name: "homePage",
+    components:{
+      EventList
+    }
   }
 </script>
 
