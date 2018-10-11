@@ -1,14 +1,15 @@
 <template>
   <div>
+    <DefaultHeader/>
     <nuxt/>
-    <my-footer/>
   </div>
 </template>
 
 <script>
-
+import DefaultHeader from '@/components/default-hearder.vue'
 export default {
   components: {
+    DefaultHeader
   }
 }
 </script>
