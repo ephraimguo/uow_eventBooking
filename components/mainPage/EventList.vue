@@ -1,5 +1,4 @@
 <template>
-
   <Row>
     <Col span="18" offset="3">
       <div style="background:#eee;padding: 20px">

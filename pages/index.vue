@@ -4,7 +4,7 @@
     <Row class="bg-row">
       <Col class='login-reg-box' span="12" offset="6">
         <Card class="bg-card">
-          <Alert type="Content">
+          <Alert type="success">
             <h3 class="form-title">Welcome to BACK</h3>
             <Form ref="formInline" :rules="ruleInline" >
               <FormItem prop="user">
@@ -37,7 +37,7 @@
         <Col class='login-reg-box' span="12" offset="6">
           <Card class="bg-card">
 
-          <Alert type="Content">
+          <Alert type="success">
             <h3 class="form-title">Become our MEMBER</h3>
             <Form ref="formInline" :rules="ruleInline" >
               <FormItem prop="user">

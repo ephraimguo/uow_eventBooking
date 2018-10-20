@@ -14,6 +14,7 @@
 
 <script>
   import EventList from '@/components/mainPage/EventList.vue'
+
   export default {
     name: "homePage",
     components:{
