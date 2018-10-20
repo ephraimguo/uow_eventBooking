@@ -1,20 +1,20 @@
 <template>
   <section>
     <Menu mode="horizontal" theme="dark" active-name="1">
-      <MenuItem name="defaultHearMenu">
+      <MenuItem name="mainEventList">
         <Icon type="ios-paper" />
         Event List
       </MenuItem>
-      <MenuItem>
+      <MenuItem name="dashBoard">
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
       <!--<Row>-->
-        <Col span="18">
-          <div >
-            <Avatar icon="ios-person" />
-          </div>
-        </Col>
+        <!--<Col span="18">-->
+          <!--<div >-->
+            <!--<Avatar icon="ios-person" />-->
+          <!--</div>-->
+        <!--</Col>-->
       <!--</Row>-->
     </Menu>
   </section>

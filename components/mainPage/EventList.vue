@@ -3,14 +3,14 @@
   <Row>
     <Col span="18" offset="3">
       <div style="background:#eee;padding: 20px">
-        <Card class="event-card" :bordered="false">
+        <Card class="eventCard" :bordered="false">
           <p slot="title">Event Title</p>
           <Card>
-            <p class="event-ctt">Time: DD - MM - YYYY hh:mm </p>
-            <p class="event-ctt">Event Capacity: 50 pax </p>
-            <p class="event-ctt">Event Organiser: Ephraim </p>
-            <p class="event-ctt">Price: $1,000,000 / pax</p>
-            <p class="event-ctt">
+            <p class="eventContent">Time: DD - MM - YYYY hh:mm </p>
+            <p class="eventContent">Event Capacity: 50 pax </p>
+            <p class="eventContent">Event Organiser: Ephraim </p>
+            <p class="eventContent">Price: $1,000,000 / pax</p>
+            <p class="eventContent">
               <Button>Register This Event</Button>
               <Button>Edit This Event</Button>
               <Button>Remove This Event</Button>
@@ -20,14 +20,14 @@
 
         <hr>
 
-        <Card class="event-card" :bordered="false">
+        <Card class="eventCard" :bordered="false">
           <p slot="title">Event Title</p>
           <Card>
-            <p class="event-ctt">Time: DD - MM - YYYY hh:mm </p>
-            <p class="event-ctt">Event Capacity: 50 pax </p>
-            <p class="event-ctt">Event Organiser: Ephraim </p>
-            <p class="event-ctt">Price: $1,000,000 / pax</p>
-            <p class="event-ctt">
+            <p class="eventContent">Time: DD - MM - YYYY hh:mm </p>
+            <p class="eventContent">Event Capacity: 50 pax </p>
+            <p class="eventContent">Event Organiser: Ephraim </p>
+            <p class="eventContent">Price: $1,000,000 / pax</p>
+            <p class="eventContent">
               <Button>Register This Event</Button>
               <Button>Edit This Event</Button>
               <Button>Remove This Event</Button>
@@ -37,14 +37,14 @@
 
         <hr>
 
-        <Card class="event-card" :bordered="false">
+        <Card class="eventCard" :bordered="false">
           <p slot="title">Event Title</p>
           <Card>
-            <p class="event-ctt">Time: DD - MM - YYYY hh:mm </p>
-            <p class="event-ctt">Event Capacity: 50 pax </p>
-            <p class="event-ctt">Event Organiser: Ephraim </p>
-            <p class="event-ctt">Price: $1,000,000 / pax</p>
-            <p class="event-ctt">
+            <p class="eventContent">Time: DD - MM - YYYY hh:mm </p>
+            <p class="eventContent">Event Capacity: 50 pax </p>
+            <p class="eventContent">Event Organiser: Ephraim </p>
+            <p class="eventContent">Price: $1,000,000 / pax</p>
+            <p class="eventContent">
               <Button>Register This Event</Button>
               <Button>Edit This Event</Button>
               <Button>Remove This Event</Button>
@@ -64,15 +64,15 @@
 </script>
 
 <style scoped>
-  .event-ctt{
+  .eventContent{
     text-align: left;
   }
 
-  .event-card{
+  .eventCard{
     margin: 20px 0;
   }
 
-  .event-dvd{
+  .eventDivider{
     color: #fff;
   }
 

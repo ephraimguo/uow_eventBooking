@@ -3,7 +3,7 @@ const {Actor} = require("cqrs");
 module.exports = class User extends Actor{
   constructor(data){
      super({
-       name: data.name ,
+       name: data.name,
        createTime: Date.now()
      });
   }
@@ -21,5 +21,4 @@ module.exports = class User extends Actor{
       }
     }
   }
-
 }

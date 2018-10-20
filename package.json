@@ -27,6 +27,7 @@
     "express-cqrs": "^2.2.0",
     "express-session": "^1.15.6",
     "iview": "^3.1.3",
+    "moment": "^2.22.2",
     "morgan": "~1.9.0",
     "nuxt": "^1.4.1",
     "nuxt-buefy": "^0.3.1",

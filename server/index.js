@@ -3,11 +3,16 @@ const https = require("https");
 const fs = require('fs');
 const svgCaptcha = require('svg-captcha');
 
+if(process.env.CLEAR){
+  const mongojs = require('mongojs');
+  mongojs('uowEventBooking').dropDatabase();
+}
 
-const {
-  Nuxt,
-  Builder
-} = require('nuxt');
+
+const MongoStore = require("cqrs-mongo-eventstore").default;
+const eventstore = new MongoStore("localhost/uowEventStore");
+
+const {Nuxt, Builder} = require('nuxt');
 const ExpressCqrs = require("express-cqrs").default;
 const session = require("express-session");
 
@@ -19,9 +24,9 @@ var bodyParser = require('body-parser');
 
 var index = require("./routes/index");
 
-const app = express()
-const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 3000
+const app = express();
+const host = process.env.HOST || '127.0.0.1';
+const port = process.env.PORT || 3000;
 
 app.set('port', port)
 
@@ -48,14 +53,16 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 const actorPath = path.resolve("./actors");
-const {domain,router} = ExpressCqrs({
-  actorPath
-});
-const {
-  readdirSync
-} = require("fs");
+const listenerPath = path.resolve("./listeners");
+// const {domain,router} = ExpressCqrs({actorPath});
+
+const {router ,domain} = ExpressCqrs({eventstore, actorPath, listenerPath,});
+
+const {readdirSync} = require("fs");
 const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));
-var dbs = require("cqrs-nedb-query")(domain, actorNames);
+
+var dbs = require("cqrs-mongo-query")(actorNames, 'mongodb://localhost:27017',domain, );
+// var dbs = require("cqrs-nedb-query")(domain, actorNames);
 
 app.use(function (req,res,next) {
    req.dbs = dbs;
@@ -85,11 +92,11 @@ let config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
 // Init Nuxt.js
-const nuxt = new Nuxt(config)
+const nuxt = new Nuxt(config);
 
 // Build only in dev mode
 if (config.dev) {
-  const builder = new Builder(nuxt)
+  const builder = new Builder(nuxt);
   builder.build()
 }
 
