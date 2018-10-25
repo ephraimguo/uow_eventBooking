@@ -5,46 +5,58 @@
  *  username
  *  fullname
  *  password
- *  course
- *  year of study
  *  perEmail
  *  phoneNo
  * */
+const {hasError} = require('../validators/hasError');
+
 
 const {Actor} = require("cqrs");
 
 module.exports = class User extends Actor{
 
-  static getUniqueFields(){
-    return ['username'];
+  static get uniqueFields(){
+    return ["username"];
   }
 
-  static beforeCreate(data, domain, uniqueOk, holdedFileds){
+  static beforeCreate(data, domain, uniqueOk, holdedFields){
     let errors = {}
 
+    console.log('\n\n =======  class User <|-- holdedFields ===== \n', holdedFields, '\n -------');
     if(!uniqueOk){
       errors = {username: "Username is not available"}
     }
 
+    if(hasError(errors)){
+      throw errors;
+    }
+
+    console.log('\n\n ====== class User <|-- data ===== \n', data, '\n -------');
+    console.log('\n\n ====== class User <|-- errors ===== \n', errors, '\n -------');
+
   }
 
   constructor(data){
-     super({
-       name: data.name,
-       createTime: Date.now()
-     });
+    const {username, fullName , password, perEmail, phoneNo} = data;
+    super({
+      username,
+      fullName,
+      password,
+      perEmail,
+      phoneNo,
+      createTime: Date.now()
+    });
   }
 
-  changeName(name){
-    this.$(name);
+  updateInfo(data, adminActorId){
+    this.$(data);
   }
 
   get updater(){
     return {
-      changeName(json,event){
-        return {
-          name: event.data
-        }
+      updateInfo(json,event){
+        const {password, fullName, perEmail} = event.data;
+        return {...data}
       }
     }
   }

@@ -1,7 +1,7 @@
 <template>
   <section>
     <Menu mode="horizontal" theme="dark" active-name="1">
-      <MenuItem name="mainEventList" to="/mainPage">
+      <MenuItem name="mainEventList" to="/homePage">
         <Icon type="ios-paper" />
         Event List
       </MenuItem>
