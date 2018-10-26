@@ -8,7 +8,7 @@
         <Icon type="ios-paper" />
         Event List
       </MenuItem>
-      <MenuItem v-if="!!$store.state.authUser" name="dashBoard">
+      <MenuItem v-if="!!$store.state.authUser" name="dashBoard" to="/dashBoard">
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
