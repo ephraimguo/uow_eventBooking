@@ -1,7 +1,7 @@
 <template>
   <section>
     <Menu mode="horizontal" theme="dark" active-name="1">
-      <MenuItem to="/homePage">
+      <MenuItem to="/homePage" name="headerLogo">
         <img src="../static/uowlogo.png" alt="" width="60" >
       </MenuItem>
       <MenuItem v-if="!$store.state.authUser" name="advertisement">

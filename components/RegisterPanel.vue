@@ -33,6 +33,12 @@
               <Input v-model="userRegInfo.fullName" placeholder="Enter your name"></Input>
             </FormItem>
 
+            <!-- prop = uniqueId -->
+            <FormItem label="Student/Admin ID" prop="uniqueId">
+              <Input v-model="userRegInfo.uniqueId" placeholder="Enter your ID No."></Input>
+            </FormItem>
+
+
             <FormItem label="Role" prop="role">
               <RadioGroup v-model="userRegInfo.role">
                 <Radio label="cio">CIO</Radio>
@@ -100,6 +106,7 @@
           confirmPassword:'',
           perEmail:'',
           phoneNo:'',
+          uniqueId:'',
           role:''
         },
         registrationFormRule: {
@@ -120,6 +127,9 @@
           ],
           role: [
             { required: true, message: 'X', trigger: 'blur'},
+          ],
+          uniqueId: [
+            {required: true, message:'Please enter your student/admin ID'}
           ],
           phoneNo:[
             { required: false}

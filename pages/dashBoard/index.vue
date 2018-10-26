@@ -1,12 +1,13 @@
 <template>
   <p>
-    this is dashboard
+   My
   </p>
 </template>
 
 <script>
   export default {
     name: "index",
+    layout:'dashBoard',
     components: {
 
     },

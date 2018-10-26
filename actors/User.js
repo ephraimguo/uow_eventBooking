@@ -37,13 +37,14 @@ module.exports = class User extends Actor{
   }
 
   constructor(data){
-    const {username, fullName , password, perEmail, phoneNo, role} = data;
+    const {username, fullName , password, perEmail, phoneNo, uniqueId ,role} = data;
     super({
       username,
       fullName,
       password,
       perEmail,
       phoneNo,
+      uniqueId,
       role,
       createTime: moment().format('X')
     });
