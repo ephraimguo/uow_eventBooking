@@ -1,13 +1,19 @@
 
 export const state = ()=>({
-  users: []
+  authUser: null
 });
 
 export const mutations = {
-  create (state , user) {
-    state.users.push(user);
-  },
-  init(state, users){
-    state.users = users;
+  setAuthUser(state, authUser) {
+    state.authUser = authUser;
+  }
+}
+
+export const actions = {
+  async nuxtServerInit({commit}, {req, res}){
+    if(req.session && req.session.authUser){
+      console.log('\n\n this is req.session.currentAuthUser\n',req.session.authUser, '\n ===');
+      commit('setAuthUser', req.session.authUser);
+    }
   }
 }

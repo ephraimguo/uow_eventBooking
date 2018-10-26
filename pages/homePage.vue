@@ -19,6 +19,11 @@
     name: "homePage",
     components:{
       EventList
+    },
+    async fetch({store, redirect}){
+      if(!store.state.authUser){
+        return redirect('/');
+      }
     }
   }
 </script>

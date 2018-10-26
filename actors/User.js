@@ -7,10 +7,10 @@
  *  password
  *  perEmail
  *  phoneNo
+ *  role
  * */
 const {hasError} = require('../validators/hasError');
-
-
+const moment = require('moment');
 const {Actor} = require("cqrs");
 
 module.exports = class User extends Actor{
@@ -37,14 +37,15 @@ module.exports = class User extends Actor{
   }
 
   constructor(data){
-    const {username, fullName , password, perEmail, phoneNo} = data;
+    const {username, fullName , password, perEmail, phoneNo, role} = data;
     super({
       username,
       fullName,
       password,
       perEmail,
       phoneNo,
-      createTime: Date.now()
+      role,
+      createTime: moment().format('X')
     });
   }
 

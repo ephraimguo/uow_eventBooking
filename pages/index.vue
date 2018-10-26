@@ -1,101 +1,60 @@
 <template>
-  <section>
-    <Divider orientation="left">Sign In</Divider>
-    <Row class="bg-row">
-      <Col class='login-reg-box' span="12" offset="6">
-        <Card class="bg-card">
-          <Alert type="success">
-            <h3 class="form-title">Welcome to BACK</h3>
-            <Form ref="formInline" :rules="ruleInline" >
-              <FormItem prop="user">
-                <Input type="text" placeholder="Username">
-                  <Icon type="ios-person-outline" slot="prepend"></Icon>
-                </Input>
-              </FormItem>
-              <FormItem  prop="password">
-                <Input type="password"  placeholder="Password">
-                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
-                </Input>
-              </FormItem>
-              <FormItem >
-                <Row>
-                  <Col span="8" offset="8">
-                    <Button type="success" long>Sign In</Button>
-                  </Col>
-                </Row>
-              </FormItem>
-            </Form>
-          </Alert>
-        </Card>
+  <section class="main-container">
 
-      </Col>
-    </Row>
-
-    <Divider orientation="left">Registration</Divider>
-
-    <Row class="bg-row" >
-        <Col class='login-reg-box' span="12" offset="6">
-          <Card class="bg-card">
-
-          <Alert type="success">
-            <h3 class="form-title">Become our MEMBER</h3>
-            <Form ref="formInline" :rules="ruleInline" >
-              <FormItem prop="user">
-                <Input type="text" placeholder="Username">
-                  <Icon type="ios-person-outline" slot="prepend"></Icon>
-                </Input>
-              </FormItem>
-              <FormItem  prop="password">
-                <Input type="password"  placeholder="Password">
-                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
-                </Input>
-              </FormItem>
-              <FormItem  prop="password">
-                <Input type="password"  placeholder="Confirm Password">
-                  <Icon type="ios-lock-outline" slot="prepend"></Icon>
-                </Input>
-              </FormItem>
-              <FormItem label="Register as">
-                <RadioGroup>
-                  <Radio label="superAdmin">CIO</Radio>
-                  <Radio label="admin">Staff</Radio>
-                  <Radio label="student">Student</Radio>
-                </RadioGroup>
-              </FormItem>
-              <FormItem >
-                <Row>
-                  <Col span="8" offset="8">
-                    <Button type="primary" long>Register</Button>
-                  </Col>
-                </Row>
-              </FormItem>
-            </Form>
-          </Alert>
-          </Card>
-        </Col>
-    </Row>
+    <Tabs type="card">
+      <TabPane label="Login">
+        <LoginPanel @userLogin="userLogin"></LoginPanel>
+      </TabPane>
+      <TabPane label="Registration">
+        <RegisterPanel @userRegistration="userRegistration"></RegisterPanel>
+      </TabPane>
+    </Tabs>
   </section>
 
 </template>
 
 <script>
+  import axios from '@/plugins/axios'
+
+  import LoginPanel from '@/components/LoginPanel.vue'
+  import RegisterPanel from '@/components/RegisterPanel.vue'
+
   export default {
+    components: {
+      LoginPanel,
+      RegisterPanel
+    },
     data () {
       return {
-        formInline: {
-          user: '',
-          password: ''
-        },
-        ruleInline: {
-          user: [
-            { required: true, message: 'Please fill in the user name', trigger: 'blur' }
-          ],
-          password: [
-            { required: true, message: 'Please fill in the password.', trigger: 'blur' },
-            { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
-          ]
-        }
+
       }
+    },
+    async fetch ({ store, redirect }) {
+      if(!store.state.authUser){
+        return redirect('/');
+      }
+      else{
+        return redirect('/homePage');
+      }
+    },
+    methods :{
+      async userRegistration(userRegInfo){
+        console.log(userRegInfo);
+        const {data} = await axios.post('/domain/User/create', userRegInfo);
+        if(data.hasOwnProperty('error')){
+          this.$Message.error('Username is taken, please change another one');
+        }
+        else{
+          this.$Message.success('Registration Successful');
+        }
+        console.log('\n\n ====== index <|-- data return thru registration ======\n', data, '\n --------------' );
+      },
+      async userLogin(userInfo){
+        console.log('\n\n ====== Index Page <|-- userLogin info ====== \n', userInfo, '\n ----------' );
+        const loginInfo = await axios.post('/users/login', userInfo);
+        window.location.reload(true);
+        console.log('\n\n ====== Index Page <|-- After LogIn ====== \n', loginInfo.data, '\n -----------');
+      },
     }
   }
 </script>
@@ -120,6 +79,10 @@
   .form-title{
     display: inline-block;
     margin: 15px auto;
+  }
+
+  .main-container {
+    margin: 50px 80px;
   }
 
 </style>

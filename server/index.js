@@ -61,7 +61,7 @@ const {router ,domain} = ExpressCqrs({eventstore, actorPath, listenerPath,});
 const {readdirSync} = require("fs");
 const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));
 
-var dbs = require("cqrs-mongo-query")(actorNames, 'mongodb://localhost:27017',domain, );
+var {dbs} = require("cqrs-mongo-query")(actorNames, 'uowEventBooking' ,domain);
 // var dbs = require("cqrs-nedb-query")(domain, actorNames);
 
 app.use(function (req,res,next) {
@@ -85,8 +85,6 @@ readdirSync(routersPath)
 .forEach(r=>app.use('/'+r,require('./routes/'+r)));
 
 
-app.use(router);
-
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
@@ -100,6 +98,7 @@ if (config.dev) {
   builder.build()
 }
 
+app.use(router);
 // Give nuxt middleware to express
 app.use(nuxt.render);
 
