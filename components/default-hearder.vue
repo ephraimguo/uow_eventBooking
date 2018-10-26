@@ -1,11 +1,11 @@
 <template>
   <section>
     <Menu mode="horizontal" theme="dark" active-name="1">
-      <MenuItem>
+      <MenuItem to="/homePage">
         <img src="../static/uowlogo.png" alt="" width="60" >
       </MenuItem>
       <MenuItem v-if="!$store.state.authUser" name="advertisement">
-        Welcome to UOW Event Booking [V1.0.0]
+        Welcome to UOW Event Booking {{version}}
       </MenuItem>
       <MenuItem v-if="!!$store.state.authUser" name="mainEventList" to="/homePage">
         <Icon type="ios-paper" />
@@ -35,11 +35,17 @@
 </template>
 
 <script>
+  import packageJson from '@/package'
   import axios from '@/plugins/axios'
 
   export default {
     name: "default-hearder",
     layout: 'default',
+    data() {
+      return {
+        version: packageJson.version
+      }
+    },
     methods: {
       async userLogout(){
         // this.$emit('userLogout', this.$store.state.authUser);
