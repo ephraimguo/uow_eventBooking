@@ -1,10 +1,12 @@
 <template>
-  <p>
-   My
-  </p>
+  <section>
+
+  </section>
 </template>
 
 <script>
+  import axios from '@/'
+
   export default {
     name: "index",
     layout:'dashBoard',

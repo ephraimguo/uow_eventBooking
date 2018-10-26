@@ -3,7 +3,7 @@
     <!-- this is layout dashBoard -->
     <DefaultHeader/>
     <DashboardNavigation/>
-    <nuxt/>
+    <nuxt class="left"/>
   </div>
 </template>
 
