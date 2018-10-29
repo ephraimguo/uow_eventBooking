@@ -3,7 +3,7 @@
     <!-- this is layout dashBoard -->
     <DefaultHeader/>
     <DashboardNavigation/>
-    <nuxt class="left"/>
+    <nuxt class="left main"/>
   </div>
 </template>
 
@@ -22,8 +22,12 @@
 <style scoped>
   .left {
     float: left;
+  }
+  .main{
     display: inline-block;
-    border: 1px solid red;
+    width: 100%;
+    min-height: 150px;
+    border: 1px solid #ccc;
   }
 
 </style>

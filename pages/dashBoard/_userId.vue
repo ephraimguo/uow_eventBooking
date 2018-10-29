@@ -4,7 +4,8 @@
 
 <script>
   export default {
-    name: "_userId"
+    // name: "_userId"
+    layout: 'dashBoard'
   }
 </script>
 

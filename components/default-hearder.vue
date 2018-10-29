@@ -15,6 +15,12 @@
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
+      <MenuItem v-if="$route.path.includes('/dashBoard')" name="drawer-trigger" >
+        <Icon type="md-arrow-round-forward"
+              size="20"
+              @click="toggleShow"
+        />
+      </MenuItem>
       <MenuItem  v-if="!!$store.state.authUser" name="userAvatar">
         <Dropdown placement="bottom-start" trigger="click">
           <a href="javascript:void(0)">
@@ -55,6 +61,9 @@
         const logoutInfo = (await axios.post('/users/logout', null)).data;
         this.$store.commit('setAuthUser', null);
         window.location.reload(true);
+      },
+      toggleShow(){
+        this.$store.commit('toggleShowDashBoardMenu', null);
       }
     }
   }

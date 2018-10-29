@@ -1,42 +1,46 @@
 <template>
   <div>
     <!-- fake menu for call the drawer out -->
-    <Menu class="drawer-trigger">
-      <MenuItem>
-        <Icon type="ios-apps"
-              class="drawer-trigger"
-              style="float:left"
-              size="30"
-              @click="showMenu = true"/>
-      </MenuItem>
-    </Menu>
+    <!--<Menu class="drawer-trigger">-->
+      <!---->
+    <!--</Menu>-->
     <Drawer title="Hey What's going on"
             :style="styles"
             placement="left"
             width="255"
-            :closable="false"
-            v-model="showMenu">
+            :mask-closable="false"
+            v-model="$store.state.showDashBoardMenu">
 
       <!-- Real menu -->
       <Menu theme="light" active-name="1">
         <MenuGroup title="Self">
           <MenuItem name="1">
-            <Icon type="md-document" />
+            <span @click="toggleShow">
+              <Icon type="md-document" />
             My Profile
+            </span>
           </MenuItem>
           <MenuItem name="2">
-            <Icon type="md-chatbubbles" />
+            <span @click="toggleShow">
+              <Icon type="md-chatbubbles" />
             My Events
+            </span>
           </MenuItem>
         </MenuGroup>
         <MenuGroup title="Public">
-          <MenuItem name="3">
-            <Icon type="md-heart" />
-            Create New Events
+          <MenuItem name="3"
+                    to="/dashBoard/createEvent">
+
+            <span @click="toggleShow">
+              <Icon type="md-heart" />
+              Create New Events
+            </span>
           </MenuItem>
           <MenuItem name="4">
-            <Icon type="md-leaf" />
+            <span @click="toggleShow">
+              <Icon type="md-leaf" />
             Manage Events
+            </span>
           </MenuItem>
         </MenuGroup>
       </Menu>
@@ -51,6 +55,7 @@
   export default {
     name: "dashboardNavigation",
     data() {
+
       return {
         showMenu: false,
         styles: {
@@ -59,6 +64,16 @@
           position: 'static'
         }
       }
+    },
+    methods:{
+      toggleShow(){
+        console.log('\n\n ==== Dash Board nav <|-- toggleShow b4==== \n',
+          this.showMenu, '\n -----------------');
+        // this.showMenu = !this.showMenu;
+        this.$store.commit('toggleShowDashBoardMenu', null);
+        console.log('\n\n ==== Dash Board nav <|-- toggleShow aft==== \n',
+          this.showMenu, '\n -----------------');
+      }
     }
   }
 </script>
@@ -66,5 +81,7 @@
 <style scoped>
   .drawer-trigger{
     /*border: 1px solid red;*/
+    max-width: 30px;
+    max-height: 30px;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  
+  <p>this is CreateNewEventPanel comp</p>
 </template>
 
 <script>

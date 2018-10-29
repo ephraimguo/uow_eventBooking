@@ -1,5 +1,5 @@
 <template>
-  
+  <p>User Profile Panel comp</p>
 </template>
 
 <script>

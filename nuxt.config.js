@@ -25,7 +25,7 @@ module.exports = {
   */
   plugins: [
     {src: '~plugins/iview', ssr: true},
-    {src:'~/plugins/VueCtkDateTimePicker', ssr: false},
+    {src: '~/plugins/VueCtkDateTimePicker', ssr: false},
   ],
   /*
   ** Customize the progress bar color

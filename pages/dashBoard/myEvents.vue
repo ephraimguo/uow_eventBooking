@@ -6,7 +6,9 @@
 
 <script>
   export default {
-    name: "MyEvents"
+    name: "MyEvents",
+    layout:'dashBoard',
+
   }
 </script>
 

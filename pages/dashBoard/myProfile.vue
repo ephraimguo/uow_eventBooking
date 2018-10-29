@@ -6,7 +6,8 @@
 
 <script>
   export default {
-    name: "myProfile"
+    name: "myProfile",
+    layout:'dashBoard',
   }
 </script>
 

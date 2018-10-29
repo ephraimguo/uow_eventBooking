@@ -1,11 +1,15 @@
 
 export const state = ()=>({
-  authUser: null
+  authUser: null,
+  showDashBoardMenu: false
 });
 
 export const mutations = {
   setAuthUser(state, authUser) {
     state.authUser = authUser;
+  },
+  toggleShowDashBoardMenu(state){
+    state.showDashBoardMenu = !state.showDashBoardMenu;
   }
 }
 
