@@ -14,20 +14,28 @@
       <!-- Real menu -->
       <Menu theme="light" active-name="1">
         <MenuGroup title="Self">
-          <MenuItem name="1">
+
+          <MenuItem name="1"
+                    to="/dashBoard/"
+          >
             <span @click="toggleShow">
               <Icon type="md-document" />
             My Profile
             </span>
           </MenuItem>
-          <MenuItem name="2">
+
+          <MenuItem name="2"
+                    to="/dashBoard/myEvent">
             <span @click="toggleShow">
               <Icon type="md-chatbubbles" />
             My Events
             </span>
           </MenuItem>
+
         </MenuGroup>
+
         <MenuGroup title="Public">
+
           <MenuItem name="3"
                     to="/dashBoard/createEvent">
 
@@ -36,12 +44,15 @@
               Create New Events
             </span>
           </MenuItem>
-          <MenuItem name="4">
+
+          <MenuItem name="4"
+                    to="/dashBoard/mangement">
             <span @click="toggleShow">
               <Icon type="md-leaf" />
             Manage Events
             </span>
           </MenuItem>
+
         </MenuGroup>
       </Menu>
     </Drawer>
@@ -79,9 +90,4 @@
 </script>
 
 <style scoped>
-  .drawer-trigger{
-    /*border: 1px solid red;*/
-    max-width: 30px;
-    max-height: 30px;
-  }
 </style>

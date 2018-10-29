@@ -16,10 +16,12 @@
         Dash Board
       </MenuItem>
       <MenuItem v-if="$route.path.includes('/dashBoard')" name="drawer-trigger" >
-        <Icon type="md-arrow-round-forward"
-              size="20"
-              @click="toggleShow"
-        />
+        <span @click="toggleShow">
+          <Icon type="md-arrow-round-forward"
+                size="20"
+          />
+        show dash navigation
+        </span>
       </MenuItem>
       <MenuItem  v-if="!!$store.state.authUser" name="userAvatar">
         <Dropdown placement="bottom-start" trigger="click">

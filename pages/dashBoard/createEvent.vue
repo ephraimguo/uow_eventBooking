@@ -1,6 +1,6 @@
 <template>
   <section>
-    <CreateNewEventPanel/>
+    <CreateNewEventPanel @createNewEvent="createNewEvent"/>
   </section>
 </template>
 
@@ -14,6 +14,17 @@
     layout: 'dashBoard',
     components: {
       CreateNewEventPanel
+    },
+    async fetch ({ store, redirect }) {
+      if(!store.state.authUser){
+        return redirect('/');
+      }
+    },
+    methods: {
+      createNewEvent(newEventInfo){
+        console.log('\n\n ====== createEvent page <|-- createNewEvent() \n ====== ',
+          newEventInfo, '\n ----------------------');
+      }
     }
   }
 </script>
