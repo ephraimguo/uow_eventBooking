@@ -54,10 +54,10 @@
     <!-- on-ok / on-cancel, these two are modal events -->
 
     <Modal
-        title="Yay! You are help others registering"
+        title="Yay! You are help others register"
         v-model="showRegForOthersModal"
         ok-text="woow it's done"
-        cancel-text="not for them..."
+        cancel-text="no, not for them..."
         :mask-closable="false"
         :closable="false">
       <p>Reg for other</p>
@@ -81,7 +81,7 @@
         title="Oh no, are you sure?"
         v-model="showRemoveEventModal"
         ok-text="remove it"
-        cancel-text="Suddenly I don't want to remove it"
+        cancel-text="cancel remove"
         :mask-closable="false"
         :closable="false">
       <p>Key In the title of the event to remove</p>
