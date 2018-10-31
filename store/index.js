@@ -1,7 +1,8 @@
 
 export const state = ()=>({
   authUser: null,
-  showDashBoardMenu: false
+  showDashBoardMenu: false,
+  calEventList: [],
 });
 
 export const mutations = {
@@ -10,6 +11,9 @@ export const mutations = {
   },
   toggleShowDashBoardMenu(state){
     state.showDashBoardMenu = !state.showDashBoardMenu;
+  },
+  setCalEventList(state, eventList) {
+    state.calEventList = eventList;
   }
 }
 

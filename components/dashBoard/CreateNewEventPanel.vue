@@ -162,7 +162,7 @@
           venue: '',
           roomId: '',
           capacity: '',
-          eventPrice: null,
+          eventPrice: 0,
           poster: '',
           adminActorId: this.$store.state.authUser.id
         },

@@ -35,6 +35,10 @@
         return redirect('/');
       }
     },
+    async mounted() {
+      // const eventList = (await axios.post('/event/queryByDate', {currentDateRaw:this.currentDateRaw}));
+      await this.initEvenListOfDay();
+    },
     async updated(){
       console.log('\n\n ===== homePage <|-- main calendar ===== \n',
         this.currentDateRaw, '\n ---------------');
@@ -42,10 +46,11 @@
     },
     methods: {
       async initEvenListOfDay(){
-        const eventListOfDay = (await axios.post('/event/queryByDate', this.currentDateRaw)).data;
+        const events = (await axios.post('/event/queryByDate',
+                                {currentDateRaw: this.currentDateRaw})).data;
         console.log('\n\n ===== homePage <|-- initEventListOfDay =====\n',
-          eventListOfDay, '\n ---------------');
-
+          events, '\n ---------------');
+        this.$store.commit('setCalEventList', events);
       }
     }
   }

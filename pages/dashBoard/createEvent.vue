@@ -35,18 +35,6 @@
             newEvent, '\n ----------------------');
           this.$Message.success('Successfully created');
         }
-        // try {
-        //   // const newEvent = await domain.create('Event', newEventInfo);
-        //   console.log('\n\n ======  createEvent page <|-- createNewEvent() success \n ====== \n',
-        //     newEvent,'\n----------------');
-        //   this.$Message.success('Successfully created \n ' + JSON.stringify(newEvent));
-        // }
-        // catch(err) {
-        //   console.log('\n\n ====== createEvent page <|-- createNewEvent() ERR \n ====== ',
-        //     err, '\n ------------------------');
-        //   this.$Message.error("Error - time conflicts");
-        // }
-
       }
     }
   }
