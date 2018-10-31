@@ -6,6 +6,7 @@
 
 <script>
   import axios from '@/plugins/axios'
+  import domain from '@/plugins/domain'
 
   import CreateNewEventPanel from '@/components/dashBoard/CreateNewEventPanel.vue'
 
@@ -21,9 +22,31 @@
       }
     },
     methods: {
-      createNewEvent(newEventInfo){
-        console.log('\n\n ====== createEvent page <|-- createNewEvent() \n ====== ',
-          newEventInfo, '\n ----------------------');
+      async createNewEvent(newEventInfo){
+        const newEvent = (await axios.post('/domain/Event/create', newEventInfo)).data;
+
+        if(newEvent.hasOwnProperty('error')){
+          console.log('\n\n ====== createEvent page <|-- createNewEvent() \n ====== ',
+            newEvent, '\n ----------------------');
+          this.$Message.error(newEvent.error.dupTimeAndVenue);
+        }
+        else{
+          console.log('\n\n ====== createEvent page <|-- createNewEvent() \n ====== ',
+            newEvent, '\n ----------------------');
+          this.$Message.success('Successfully created');
+        }
+        // try {
+        //   // const newEvent = await domain.create('Event', newEventInfo);
+        //   console.log('\n\n ======  createEvent page <|-- createNewEvent() success \n ====== \n',
+        //     newEvent,'\n----------------');
+        //   this.$Message.success('Successfully created \n ' + JSON.stringify(newEvent));
+        // }
+        // catch(err) {
+        //   console.log('\n\n ====== createEvent page <|-- createNewEvent() ERR \n ====== ',
+        //     err, '\n ------------------------');
+        //   this.$Message.error("Error - time conflicts");
+        // }
+
       }
     }
   }

@@ -44,47 +44,77 @@
             </FormItem>
 
             <FormItem label="Start At" prop="startTimeRaw">
-              <!--<Input v-model="newEventInfo.startTimeRaw" type="text"/>-->
-              <DatePicker type="date"
-                          format="dd-MM-yyyy"
-                          v-model="newEventInfo.startDate"
-                          placeholder="Select date"
-                          style="width: 200px"/> |
-              <TimePicker
-                  format="HH:mm"
-                  v-model="newEventInfo.startTiming"
-                  placeholder="Select time"
-                  style="width: 112px"/>
+              <no-ssr>
+                <vue-ctk-date-time-picker
+                  v-model="newEventInfo.startTimeRaw"
+                  label=""
+                  :minute-interval="10"
+                  overlay-background
+                  enable-button-validate
+                  without-header
+                  color="#4d6d7c"
+                />
+              </no-ssr>
+              {{newEventInfo.startTimeRaw}}
             </FormItem>
 
-            <FormItem label="Duration" prop="duration">
-              <Input v-model="newEventInfo.duration" type="text"/>
+            <FormItem label="Duration(Hours)" prop="duration">
+              <!--<Input v-model="newEventInfo.duration" type="text"/>-->
+              <Select label="How long does it take?" v-model="newEventInfo.duration" style="width:100%">
+                <Option v-for="(item, index) in duration" :value="item" :key="index">
+                  {{ item }}
+                </Option>
+              </Select>
             </FormItem>
 
             <FormItem label="dressCode" prop="dressCode">
-              <Input v-model="newEventInfo.dressCode" type="text"/>
+              <!--<Input v-model="newEventInfo.dressCode" type="text"/>-->
+              <!--dressCode-->
+              <Select label="How is the dressing code?" v-model="newEventInfo.dressCode" style="width:100%">
+                <Option v-for="(item, index) in dressCode" :value="item" :key="index">
+                  {{ item }}
+                </Option>
+              </Select>
             </FormItem>
 
             <FormItem label="Venue" prop="venue">
-              <Input v-model="newEventInfo.venue" type="text"/>
+              <!--<Input v-model="newEventInfo.venue" type="text"/>-->
+              <Select label="Where is the place?" v-model="newEventInfo.venue" style="width:100%">
+                <Option v-for="(item, index) in venue" :value="item" :key="index">
+                  {{ item }}
+                </Option>
+              </Select>
             </FormItem>
 
             <FormItem label="Room ID" prop="roomId">
-              <Input v-model="newEventInfo.roomId" type="text"/>
+              <!--<Input v-model="newEventInfo.roomId" type="text"/>-->
+              <Select label="Which room is to be taken?" v-model="newEventInfo.roomId" style="width:100%">
+                <Option v-for="(item, index) in roomId" :value="item" :key="index">
+                  {{ item }}
+                </Option>
+              </Select>
             </FormItem>
 
             <FormItem label="Event Capacity" prop="capacity">
-              <Input v-model="newEventInfo.capacity" type="text"/>
+              <!--<Input v-model="newEventInfo.capacity" type="text"/>-->
+              <Select label="Which room is to be taken?" v-model="newEventInfo.capacity" style="width:100%">
+                <Option
+                    v-for="(item, index) in capacity"
+                    :value="item" :key="index">
+                  {{ item }}
+                </Option>
+              </Select>
             </FormItem>
 
             <FormItem label="Ticket Price" prop="eventPrice">
-              <Input v-model="newEventInfo.eventPrice" type="text"/>
+              <!--<Input v-model="newEventInfo.eventPrice" type="text"/>-->
+              <Input v-model="newEventInfo.eventPrice" prefix="logo-usd" placeholder="Is it a free($0.00) event?" style="width:100%" />
             </FormItem>
 
             <FormItem >
               <Row>
                 <Col span="8" offset="8">
-                  <Button type="primary" @click="createNewEvent(newEventInfo)" long>Create</Button>
+                  <Button type="primary" @click="createNewEvent('newEventForm')" long>Create New Event</Button>
                 </Col>
               </Row>
             </FormItem>
@@ -98,16 +128,26 @@
 <script>
   import department from '@/static/eventData/department.json'
   import eventType from '@/static/eventData/eventType.json'
+  import dressCode from '@/static/eventData/dressCode.json'
+  import venue from '@/static/eventData/venue.json'
+  import roomId from '@/static/eventData/roomId.json'
+  import duration from '@/static/eventData/duration.json'
+  import capacity from '@/static/eventData/capacity.json'
 
   export default {
     name: "CreateNewEventPanel",
     updated() {
-      console.log(this.newEventInfo.contactNo);
+      // console.log(this.newEventInfo.contactNo);
     },
     data() {
       return {
         department: department,
         eventType: eventType,
+        dressCode: dressCode,
+        venue: venue,
+        roomId: roomId,
+        duration: duration,
+        capacity: capacity,
         newEventInfo: {
           title: '',
           department: '',
@@ -116,9 +156,7 @@
           contactEmail: '',
           company: '',
           type: '',
-          startDate: null,
-          startTiming: null,
-          startTimeRaw: (!!this.startDate && !!this.startTiming)?String(this.startDate.getFullYear()+''+this.startDate.getMonth()+''+this.startDate.getDate()) + ' ' + String(this.startTiming): null,
+          startTimeRaw: String(new Date()),
           duration: null,
           dressCode: '',
           venue: '',
@@ -133,7 +171,7 @@
             {required: true, message: 'Event title is needed', trigger: 'blur'}
           ],
           department: [{
-            required: true, message: 'Department is needed', trigger: 'blur'
+            required: true, message: 'Department is needed', trigger: 'change'
           }],
           coordinator: [{
             required: true, message: 'Coordinator is needed', trigger: 'blur'
@@ -149,25 +187,25 @@
             required: true, message: 'Organised Company is needed', trigger: 'blur'
           }],
           type: [{
-            required: true, message: 'Event type is needed', trigger: 'blur'
+            required: true, message: 'Event type is needed', trigger: 'change'
           }],
           startTimeRaw: [{
-            required: true, message: 'Event start time is needed', trigger: 'blur'
+            required: true, message: 'Event start time is needed', trigger: 'change'
           }],
           duration: [{
-            required: true, message: 'Event duration is needed', trigger: 'blur'
+            required: true, type: 'number', message: 'Event duration is needed', trigger: 'change'
           }],
           dressCode: [{
-            required: true, message: 'Dressing code is needed', trigger: 'blur'
+            required: true, message: 'Dressing code is needed', trigger: 'change'
           }],
           venue: [{
-            required: true, message: 'Venue is needed', trigger: 'blur'
+            required: true, message: 'Venue is needed', trigger: 'change'
           }],
           roomId: [{
-            required: true, message: 'Room is needed', trigger: 'blur'
+            required: true, message: 'Room is needed', trigger: 'change'
           }],
           capacity: [{
-            required: true, message: 'Event cap. is needed', trigger: 'blur'
+            required: true, type: 'number', message: 'Event cap. is needed', trigger: 'change'
           }],
           eventPrice: [{
             required: true, message: 'Ticket is needed', trigger: 'blur'
@@ -176,10 +214,24 @@
         }
       }
     },
+    filter: {
+      addDollarSign(value){
+        return '$'+value;
+      }
+    },
     methods: {
-      createNewEvent(newEventInfo){
-        console.log('\n\n ==== CreateNewEventPanel <|-- createNewEvent() ===== \n', newEventInfo, '\n ---------------------');
-        this.$emit('createNewEvent', newEventInfo);
+      createNewEvent(refName){
+
+        this.$refs[refName].validate((valid) => {
+          if(valid) {
+            console.log('\n\n ==== CreateNewEventPanel <|-- createNewEvent() ===== \n',
+              this.newEventInfo, '\n ---------------------');
+            this.$emit('createNewEvent', this.newEventInfo);
+          }
+          else{
+            this.$Message.error('Submission Failed');
+          }
+        });
       }
     }
   }
