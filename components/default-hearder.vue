@@ -4,7 +4,7 @@
       <MenuItem to="/homePage" name="headerLogo">
         <img src="../static/uowlogo.png" alt="" width="60" >
       </MenuItem>
-      <MenuItem v-if="!$store.state.authUser" name="advertisement">
+      <MenuItem name="advertisement">
         Welcome to UOW Event Booking {{version}}
       </MenuItem>
       <MenuItem v-if="!!$store.state.authUser" name="mainEventList" to="/homePage">
