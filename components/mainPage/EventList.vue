@@ -21,11 +21,18 @@
             <p class="eventContent">Capacity: {{item.capacity}} </p>
             <p class="eventContent">Event SeatLeft: {{item.capacity - item.seatTaken}} </p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
-            <p class="eventContent">
-              <Button>Register This Event</Button>
-              <Button>Edit This Event</Button>
-              <Button>Remove This Event</Button>
-            </p>
+            <div class="eventContent" style="width:100%">
+              <p>
+                <Button type="primary" class="cal-event-btn">Register This Event</Button>
+              </p>
+              <ButtonGroup v-if="$store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio'"
+                           size="small"
+                           shape="circle">
+                <Button type="success" class="cal-event-btn">Register for others</Button>
+                <Button type="warning" class="cal-event-btn">Edit This Event</Button>
+                <Button type="error" class="cal-event-btn">Remove This Event</Button>
+              </ButtonGroup>
+            </div>
           </Card>
         </Card>
 
@@ -101,6 +108,10 @@
 
   .eventDivider{
     color: #fff;
+  }
+
+  .cal-event-btn {
+    margin: 5px 0;
   }
 
 </style>
