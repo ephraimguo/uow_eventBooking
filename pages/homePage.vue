@@ -3,7 +3,7 @@
     <Card class="cal-panel" >
       <no-ssr>
         <vue-ctk-date-time-picker
-            color="#96bf31"
+            color="#00bca0"
             v-model="currentDateRaw"
             format="YYYY-MM-DD"
             label="Choose date"
@@ -36,7 +36,6 @@
       }
     },
     async mounted() {
-      // const eventList = (await axios.post('/event/queryByDate', {currentDateRaw:this.currentDateRaw}));
       await this.initEvenListOfDay();
     },
     async updated(){

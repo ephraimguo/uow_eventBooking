@@ -28,49 +28,68 @@
               <ButtonGroup v-if="$store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio'"
                            size="small"
                            shape="circle">
-                <Button type="success" class="cal-event-btn">Register for others</Button>
-                <Button type="warning" class="cal-event-btn">Edit This Event</Button>
-                <Button type="error" class="cal-event-btn">Remove This Event</Button>
+                <Button type="success"
+                        @click="showRegForOthersModal = true"
+                        class="cal-event-btn" >
+                  Register for others
+                </Button>
+                <Button type="warning"
+                        @click = "showEditCurrentEventModal = true"
+                        class="cal-event-btn">
+                  Edit This Event
+                </Button>
+                <Button type="error"
+                        @click = "showRemoveEventModal = true"
+                        class="cal-event-btn" >
+                  Remove This Event
+                </Button>
               </ButtonGroup>
             </div>
           </Card>
         </Card>
-
         <hr>
-
-        <!--<Card class="eventCard" :bordered="false">-->
-          <!--<p slot="title">Event Title</p>-->
-          <!--<Card>-->
-            <!--<p class="eventContent">Time: DD - MM - YYYY hh:mm </p>-->
-            <!--<p class="eventContent">Event Capacity: 50 pax </p>-->
-            <!--<p class="eventContent">Event Organiser: Ephraim </p>-->
-            <!--<p class="eventContent">Price: $1,000,000 / pax</p>-->
-            <!--<p class="eventContent">-->
-              <!--<Button>Register This Event</Button>-->
-              <!--<Button>Edit This Event</Button>-->
-              <!--<Button>Remove This Event</Button>-->
-            <!--</p>-->
-          <!--</Card>-->
-        <!--</Card>-->
-
-        <!--<hr>-->
-
-        <!--<Card class="eventCard" :bordered="false">-->
-          <!--<p slot="title">Event Title</p>-->
-          <!--<Card>-->
-            <!--<p class="eventContent">Time: DD - MM - YYYY hh:mm </p>-->
-            <!--<p class="eventContent">Event Capacity: 50 pax </p>-->
-            <!--<p class="eventContent">Event Organiser: Ephraim </p>-->
-            <!--<p class="eventContent">Price: $1,000,000 / pax</p>-->
-            <!--<p class="eventContent">-->
-              <!--<Button>Register This Event</Button>-->
-              <!--<Button>Edit This Event</Button>-->
-              <!--<Button>Remove This Event</Button>-->
-            <!--</p>-->
-          <!--</Card>-->
-        <!--</Card>-->
       </div>
     </Col>
+
+    <!-- on-ok / on-cancel, these two are modal events -->
+
+    <Modal
+        title="Yay! You are help others registering"
+        v-model="showRegForOthersModal"
+        ok-text="woow it's done"
+        cancel-text="not for them..."
+        :mask-closable="false"
+        :closable="false">
+      <p>Reg for other</p>
+      <p>Reg for other</p>
+      <p>Reg for other</p>
+    </Modal>
+
+    <Modal
+        title="Hey, please edit the content carefully"
+        v-model="showEditCurrentEventModal"
+        ok-text="update event"
+        cancel-text="hmmm not yet"
+        :mask-closable="false"
+        :closable="false">
+      <p>Edit</p>
+      <p>Edit</p>
+      <p>Edit</p>
+    </Modal>
+
+    <Modal
+        title="Oh no, are you sure?"
+        v-model="showRemoveEventModal"
+        ok-text="remove it"
+        cancel-text="Suddenly I don't want to remove it"
+        :mask-closable="false"
+        :closable="false">
+      <p>Key In the title of the event to remove</p>
+      <p>Key In the title of the event to remove</p>
+      <p>Key In the title of the event to remove</p>
+    </Modal>
+
+
   </Row>
 
 </template>
@@ -80,7 +99,10 @@
     name: "EventList",
     data() {
       return {
-        eventList: this.$store.state.calEventList
+        eventList: this.$store.state.calEventList,
+        showRegForOthersModal: false,
+        showEditCurrentEventModal: false,
+        showRemoveEventModal: false
       }
     },
     async fetch({store}){
