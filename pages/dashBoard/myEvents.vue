@@ -48,6 +48,11 @@
       }
     },
     async mounted() {
+      const managerId = 'evtmanager' + this.$store.state.authUser.id;
+      const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+      console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+      this.$store.commit('setAuthUserManager', {userEventManager});
+
       for(let eventId of this.$store.state.authUserManager.bookedEvents) {
         const event = (await axios.post('/event/queryByEventId', {eventId})).data;
         this.myEventList.push(event);
