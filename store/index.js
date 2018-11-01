@@ -30,7 +30,6 @@ export const mutations = {
   setAuthUserManager(state, {userEventManager}) {
     state.authUserManager = userEventManager;
   },
-  // cancelBookingMyEvent(state,)
   loggoutAuthUserManager(state, manager) {
     state.authUserManager = null;
   }

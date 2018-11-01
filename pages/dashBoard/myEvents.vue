@@ -16,7 +16,7 @@
           <p>Seat Left: {{item.capacity - item.seatTaken}}</p>
           <p>Price: {{item.eventPrice}}</p>
           <div>
-            <Button @click="cancelEvent(item.id)">cancel event</Button>
+            <Button @click="cancelEvent(item)">cancel event</Button>
           </div>
         </Card>
       </Col>
@@ -56,15 +56,14 @@
         this.myEventList, '\n -------------------');
     },
     async updated() {
-      // for(let eventId of this.$store.state.authUserManager.bookedEvents) {
-      //   const event = (await axios.post('/event/queryByEventId', {eventId})).data;
-      //   this.myEventList.push(event);
-      // }
-      // console.log('\n\n ======= this.MyEventList ======\n',
-      //   this.myEventList, '\n -------------------');
+      const managerId = 'evtmanager' + this.$store.state.authUser.id;
+      const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+      console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+      this.$store.commit('setAuthUserManager', {userEventManager});
     },
     methods: {
-      async cancelEvent(eventId) {
+      async cancelEvent(event) {
+        const eventId = event.id;
         console.log('\n\n ======== myEvent <|-- cancelEvent() ========\n',
           eventId, '\n-------------------');
         const cancelInfo = (await axios.post('/userEventManager/unBookEvent', {eventId,
@@ -74,11 +73,14 @@
           cancelInfo, '\n-------------------');
 
         // window.location.reload(true);
+        let tmpEventList = new Set(this.myEventList);
+        tmpEventList.delete(event);
+        this.myEventList = [...tmpEventList];
 
-        // const managerId = 'evtmanager' + this.$store.state.authUser.id;
-        // const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
-        // console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
-        // this.$store.commit('setAuthUserManager', {userEventManager});
+        const managerId = 'evtmanager' + this.$store.state.authUser.id;
+        const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+        console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+        this.$store.commit('setAuthUserManager', {userEventManager});
       }
     }
   }

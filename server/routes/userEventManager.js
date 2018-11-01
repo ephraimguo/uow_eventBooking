@@ -40,13 +40,13 @@ router.post('/unBookEvent', async function(req, res) {
     userEventManager.data, '\n ------------------------');
 
   try {
+    await userEventManager.unBookEvent(eventId, adminActorId);
     console.log('\n\n ======== /userEventManager/unBookEvent =======\n',
       userEventManager.data, '\n ------------------------');
-    await userEventManager.unBookEvent(eventId, adminActorId);
     res.send({eventId, userEventManager: userEventManager.data});
   }
   catch(err) {
-    res.send({err});
+    res.send({...err});
   }
 
 });

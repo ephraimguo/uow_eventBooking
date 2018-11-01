@@ -35,7 +35,7 @@ module.exports = class UserEventManager extends Actor {
 
   unBookEvent(eventId, adminActorId) {
     if(this.data.bookedEvents.includes(eventId)){
-      this.$({evenrId, adminActorId});
+      this.$({eventId, adminActorId});
     }
     else {
       throw {error: "event not found, something worng, please email the organiser"}
