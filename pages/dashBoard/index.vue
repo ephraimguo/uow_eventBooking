@@ -8,9 +8,13 @@
           <p slot="title">
             Look at here
           </p>
-          <p v-for="(item, index) of $store.state.authUser">
-            {{index}}: {{item}}
-          </p>
+
+          <p>Username: {{$store.state.authUser.username}}</p>
+          <p>Full Name: {{$store.state.authUser.fullName}}</p>
+          <p>Email: {{$store.state.authUser.perEmail}}</p>
+          <p>Phone: {{$store.state.authUser.phoneNo || '⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄'}}</p>
+          <p>Role: {{$store.state.authUser.role}}</p>
+
           <div style="text-align:right">
             <Button type="dashed" @click="showEditPanel()">edit profile</Button>
           </div>

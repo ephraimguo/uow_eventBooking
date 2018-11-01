@@ -6,12 +6,14 @@
             color="#00bca0"
             v-model="currentDateRaw"
             format="YYYY-MM-DD"
+            formatted="X"
             label="Choose date"
+            enable-button-validate
             without-input
             disable-time/>
       </no-ssr>
     </Card>
-    <EventList/>
+    <EventList @bookingEvent="bookingEvent"/>
   </section>
 </template>
 
@@ -27,7 +29,7 @@
     },
     data() {
       return {
-        currentDateRaw: String(new Date())
+        currentDateRaw: this.$moment(Date.now()).format('YYYY-MM-DD').toString()
       }
     },
     async fetch({store, redirect}) {
@@ -36,6 +38,11 @@
       }
     },
     async mounted() {
+      const managerId = 'evtmanager' + this.$store.state.authUser.id;
+      const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+      console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+      this.$store.commit('setAuthUserManager', {userEventManager});
+
       await this.initEvenListOfDay();
     },
     async updated(){
@@ -50,6 +57,16 @@
         console.log('\n\n ===== homePage <|-- initEventListOfDay =====\n',
           events, '\n ---------------');
         this.$store.commit('setCalEventList', events);
+      },
+
+      async bookingEvent(eventId) {
+        console.log('\n\n ======== homePage <|-- bookEvent() ======== \n',
+          eventId, '\n ----------------------');
+        const evtInfo = (await axios.post('/userEventManager/bookEvent', {eventId: eventId,
+            userActorId: this.$store.state.authUser.id,
+            adminActorId:this.$store.state.authUser.id})).data;
+        console.log('\n\n ======== homePage <|-- bookEvent() booked event returned ======== \n',
+          evtInfo, '\n ----------------------');
       }
     }
   }

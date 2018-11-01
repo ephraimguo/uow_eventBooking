@@ -14,9 +14,8 @@ module.exports = class UserEventManager extends Actor {
 
   constructor(data){
     const {userActorId, adminActorId} = data;
-    const managerId = 'evtmanager' + data.userActorId;
     super({
-      managerId,
+      id:'evtmanager' + data.userActorId,
       userActorId,
       bookedEvents: [],
       lastEditedBy: adminActorId,

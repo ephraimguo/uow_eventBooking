@@ -46,11 +46,11 @@
           </MenuItem>
 
           <MenuItem name="4"
-                    to="/dashBoard/mangement">
+                    to="/dashBoard/management">
             <span @click="toggleShow">
               <Icon type="md-leaf" />
             Manage Events
-            </span>
+            </span>a
           </MenuItem>
 
         </MenuGroup>

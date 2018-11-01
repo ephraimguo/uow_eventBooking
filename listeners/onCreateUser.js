@@ -1,6 +1,6 @@
 
 
-module.exports = function(domain) {
+module.exports = function({domain}) {
   domain.once({actorType: 'User', type:'create'}, async function(event){
     const userInfo = event.data;
     const userActorId = userInfo.id;

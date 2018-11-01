@@ -4,6 +4,7 @@ const moment = require('moment');
 
 router.post('/queryByDate', async function(req, res){
   const {currentDateRaw} = req.body;
+  // const tempDate = new Date(currentDateRaw);
   console.log('\n\n ==== /events/queryByDate ==== \n',
     currentDateRaw, '\n ---------------------');
 

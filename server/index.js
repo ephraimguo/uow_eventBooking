@@ -56,7 +56,7 @@ const actorPath = path.resolve("./actors");
 const listenerPath = path.resolve("./listeners");
 // const {domain,router} = ExpressCqrs({actorPath});
 
-const {router ,domain} = ExpressCqrs({eventstore, actorPath, listenerPath,});
+const {router ,domain} = ExpressCqrs({eventstore, actorPath, listenerPath});
 
 const {readdirSync} = require("fs");
 const actorNames = readdirSync(actorPath).filter(filename => /\.js$/.test(filename)).map(filename => filename.substring(0, filename.length - 3));

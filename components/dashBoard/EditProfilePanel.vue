@@ -33,17 +33,20 @@
             <!--</FormItem>-->
 
 
+
+
+            <!-- prop = phoneNo -->
+            <FormItem label="Phone Number" prop="phoneNo">
+              <Input v-model="userProfile.phoneNo" placeholder="Please enter your phone number"></Input>
+            </FormItem>
+
+            <!-- prop = role -->
             <FormItem label="Role" prop="role">
               <RadioGroup v-model="userProfile.role">
                 <Radio label="cio">CIO</Radio>
                 <Radio label="staff">Staff</Radio>
                 <Radio label="student">Student</Radio>
               </RadioGroup>
-            </FormItem>
-
-            <!-- prop = phoneNo -->
-            <FormItem label="Phone Number" prop="phoneNo">
-              <Input v-model="userProfile.phoneNo" placeholder="Please enter your phone number"></Input>
             </FormItem>
 
             <FormItem >

@@ -15,6 +15,7 @@
 
 <script>
   import axios from '@/plugins/axios'
+  import domain from '@/plugins/domain'
 
   import LoginPanel from '@/components/LoginPanel.vue'
   import RegisterPanel from '@/components/RegisterPanel.vue'
@@ -52,6 +53,8 @@
       async userLogin(userInfo){
         console.log('\n\n ====== Index Page <|-- userLogin info ====== \n', userInfo, '\n ----------' );
         const loginInfo = await axios.post('/users/login', userInfo);
+
+
         window.location.reload(true);
         console.log('\n\n ====== Index Page <|-- After LogIn ====== \n', loginInfo.data, '\n -----------');
       },

@@ -7,9 +7,9 @@
             class="eventCard"
             :key="'calevt'+index"
             :bordered="false">
-          <p slot="title">{{item.title}}</p>
+          <h2 slot="title">{{item.title}}</h2>
           <Card>
-            <p class="eventContent">Time: {{item.startTimeRaw}} </p>
+            <p class="eventContent">Time: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}} </p>
             <p class="eventContent">Department: {{item.department}} </p>
             <p class="eventContent">Coordinator: {{item.coordinator}} </p>
             <p class="eventContent">Contact No: {{item.contactNo}} </p>
@@ -23,7 +23,19 @@
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
               <p>
-                <Button type="primary" class="cal-event-btn">Register This Event</Button>
+                <Button v-if="$store.state.authUserManager.bookedEvents.includes(item.id)"
+                        type="error"
+                        class="cal-event-btn"
+                        disabled>
+                  Already Booked
+                </Button>
+
+                <Button  v-else
+                         type="primary"
+                         class="cal-event-btn"
+                         @click="bookingEvent(item.id)">
+                  Register This Event
+                </Button>
               </p>
               <ButtonGroup v-if="$store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio'"
                            size="small"
@@ -112,8 +124,9 @@
     //   this.$store.commit('setCalEventList', )
     // },
     methods: {
-      initEventList() {
-
+      bookingEvent(eventId) {
+        console.log('\n\n ========= EventList <|-- bookingEvent() ======= \n', eventId,'\n -------------------');
+        this.$emit('bookingEvent', eventId);
       }
     }
   }

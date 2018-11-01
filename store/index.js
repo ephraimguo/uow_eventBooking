@@ -1,6 +1,7 @@
 
 export const state = ()=>({
   authUser: null,
+  authUserManager: null,
   showDashBoardMenu: false,
   calEventList: [],
   profileUser: null,
@@ -22,8 +23,13 @@ export const mutations = {
   },
   showEditProfilePanel(state, showOrNot) {
     state.showEditProfilePanel = showOrNot;
+  },
+  setAuthUserManager(state, {userEventManager}) {
+    state.authUserManager = userEventManager;
+  },
+  loggoutAuthUserManager(state, manager) {
+    state.authUserManager = null;
   }
-
 }
 
 export const actions = {
