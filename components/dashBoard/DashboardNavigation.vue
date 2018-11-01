@@ -16,7 +16,7 @@
         <MenuGroup title="Self">
 
           <MenuItem name="1"
-                    to="/dashBoard/"
+                    :to="{path:'/dashBoard'}"
           >
             <span @click="toggleShow">
               <Icon type="md-document" />
@@ -25,7 +25,7 @@
           </MenuItem>
 
           <MenuItem name="2"
-                    to="/dashBoard/myEvent">
+                    to="/dashBoard/myEvents">
             <span @click="toggleShow">
               <Icon type="md-chatbubbles" />
             My Events

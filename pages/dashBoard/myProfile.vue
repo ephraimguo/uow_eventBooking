@@ -8,6 +8,11 @@
   export default {
     name: "myProfile",
     layout:'dashBoard',
+    async fetch ({ store, redirect }) {
+      if(!store.state.authUser){
+        return redirect('/');
+      }
+    }
   }
 </script>
 

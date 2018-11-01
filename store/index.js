@@ -3,6 +3,8 @@ export const state = ()=>({
   authUser: null,
   showDashBoardMenu: false,
   calEventList: [],
+  profileUser: null,
+  showEditProfilePanel: false
 });
 
 export const mutations = {
@@ -14,7 +16,14 @@ export const mutations = {
   },
   setCalEventList(state, eventList) {
     state.calEventList = eventList;
+  },
+  setProfileUser(state, user){
+    state.profileUser = user;
+  },
+  showEditProfilePanel(state, showOrNot) {
+    state.showEditProfilePanel = showOrNot;
   }
+
 }
 
 export const actions = {

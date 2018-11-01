@@ -11,11 +11,14 @@
         <Icon type="ios-paper" />
         Event List
       </MenuItem>
-      <MenuItem v-if="!!$store.state.authUser" name="dashBoard" to="/dashBoard">
+      <MenuItem v-if="!!$store.state.authUser"
+                name="dashBoard"
+                :to="{path:'/dashBoard'}">
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
-      <MenuItem v-if="$route.path.includes('/dashBoard')" name="drawer-trigger" >
+      <MenuItem v-if="$route.path.includes('/dashBoard') && !!$store.state.authUser"
+                name="drawer-trigger" >
         <span @click="toggleShow">
           <Icon type="md-arrow-round-forward"
                 size="20"
@@ -30,7 +33,9 @@
           </a>
           <DropdownMenu slot="list">
             <DropdownItem>
-              <Button >Profile</Button>
+              <Button :to="{path:'/dashBoard'}">
+                Profile
+              </Button>
             </DropdownItem>
             <DropdownItem>
               <Button @click="userLogout">Log Out</Button>

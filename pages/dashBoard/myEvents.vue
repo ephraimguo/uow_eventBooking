@@ -8,7 +8,11 @@
   export default {
     name: "MyEvents",
     layout:'dashBoard',
-
+    async fetch ({ store, redirect }) {
+      if(!store.state.authUser){
+        return redirect('/');
+      }
+    }
   }
 </script>
 
