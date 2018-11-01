@@ -67,6 +67,11 @@
             adminActorId:this.$store.state.authUser.id})).data;
         console.log('\n\n ======== homePage <|-- bookEvent() booked event returned ======== \n',
           evtInfo, '\n ----------------------');
+
+        const managerId = 'evtmanager' + this.$store.state.authUser.id;
+        const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+        console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+        this.$store.commit('setAuthUserManager', {userEventManager});
       }
     }
   }

@@ -30,4 +30,25 @@ router.post('/bookEvent', async function(req, res) {
   }
 });
 
+router.post('/unBookEvent', async function(req, res) {
+  const {eventId, userActorId ,adminActorId} = req.body;
+  console.log('\n\n ====== userEventManager/unBookEvent/ ======\n',
+    req.body, '\n ---------------------');
+
+  const userEventManager = await req.$domain.get('UserEventManager', 'evtmanager'+userActorId);
+  console.log('\n\n ======== /userEventManager/unBookEvent =======\n',
+    userEventManager.data, '\n ------------------------');
+
+  try {
+    console.log('\n\n ======== /userEventManager/unBookEvent =======\n',
+      userEventManager.data, '\n ------------------------');
+    await userEventManager.unBookEvent(eventId, adminActorId);
+    res.send({eventId, userEventManager: userEventManager.data});
+  }
+  catch(err) {
+    res.send({err});
+  }
+
+});
+
 module.exports = router;

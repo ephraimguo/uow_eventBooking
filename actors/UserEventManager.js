@@ -53,12 +53,13 @@ module.exports = class UserEventManager extends Actor {
           lastEditedAt: moment(Date.now()).format('X')
         }
       },
-      unbookEvent(data, event) {
+      unBookEvent(data, event) {
         const tempBookedEvents = new Set(data.bookedEvents);
-        tempBookedEvents.delete(event.data.eventId);
+        const {eventId, adminActorId} = event.data;
+        tempBookedEvents.delete(eventId);
         return {
           bookedEvents: [...tempBookedEvents],
-          lastEditedBy: event.data.adminActorId,
+          lastEditedBy: adminActorId,
           lastEditedAt: moment(Date.now()).format('X')
         }
       }

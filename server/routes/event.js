@@ -26,4 +26,19 @@ router.post('/queryByDate', async function(req, res){
   // res.send('query by date router thru');
 });
 
+router.post('/queryByEventId', async function(req, res) {
+  const {eventId} = req.body;
+  req.dbs.Event.findOne({id: eventId}, function(err, event){
+    if(!!err){
+      res.send(' /event/queryByEventId ');
+    }
+    else if(!event) {
+      res.send('No event found');
+    }
+    else {
+      res.send(event);
+    }
+  });
+});
+
 module.exports = router;

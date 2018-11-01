@@ -22,6 +22,7 @@ router.post('/login', async function(req, res){
   const {username, password} = req.body;
   let errors = {}
 
+
   req.dbs.User.findOne({username: username, password:password}, function(err, user){
     if(!!err){
       res.send('/users/login <|-- ERROR!');
@@ -32,6 +33,11 @@ router.post('/login', async function(req, res){
     }
     else{
       req.session.authUser = user;
+
+      // const authUserManager = (await req.$domain.get('UserEventManger', 'evtmanager'+user.id));
+
+      // req.session.authUserManager = authUserManager;
+
       console.log('\n\n ======  /users/login <|-- logged in ====== \n',
         req.session.authUser, '\n ----------------');
       res.send(user);

@@ -1,3 +1,4 @@
+const domain = require('../plugins/domain');
 
 export const state = ()=>({
   authUser: null,
@@ -9,7 +10,9 @@ export const state = ()=>({
 });
 
 export const mutations = {
-  setAuthUser(state, authUser) {
+  setAuthUser(state, authUser, manager) {
+    // const manager = (await domain.get('UserEventManager', 'evtmanager'+authUser.id));
+    // state.authUserManager = manager;
     state.authUser = authUser;
   },
   toggleShowDashBoardMenu(state){
@@ -27,6 +30,7 @@ export const mutations = {
   setAuthUserManager(state, {userEventManager}) {
     state.authUserManager = userEventManager;
   },
+  // cancelBookingMyEvent(state,)
   loggoutAuthUserManager(state, manager) {
     state.authUserManager = null;
   }
@@ -36,7 +40,7 @@ export const actions = {
   async nuxtServerInit({commit}, {req, res}){
     if(req.session && req.session.authUser){
       console.log('\n\n this is req.session.currentAuthUser\n',req.session.authUser, '\n ===');
-      commit('setAuthUser', req.session.authUser);
+      commit('setAuthUser', req.session.authUser, req.session.authUserManager);
     }
   }
 }
