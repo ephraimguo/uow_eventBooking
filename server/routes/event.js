@@ -42,10 +42,10 @@ router.post('/queryByEventId', async function(req, res) {
 });
 
 router.post('/queryByCreatedBy', async function(req, res) {
-  const {eventId} = req.body;
-  req.dbs.Event.find({id: eventId}, function(err, event){
+  const {createdBy} = req.body;
+  req.dbs.Event.find({createdBy: {$in: [createdBy]}}, function(err, event){
     if(!!err){
-      res.send(' /event/queryByEventId ');
+      res.send(' /event/queryByCreatedBy ');
     }
     else if(!event) {
       res.send('No event found');

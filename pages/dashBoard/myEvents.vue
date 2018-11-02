@@ -24,7 +24,11 @@
           <p>Seat Left: {{item.capacity - item.seatTaken}}</p>
           <p>Price: {{item.eventPrice}}</p>
           <div>
-            <Button @click="cancelEvent(item)">cancel event</Button>
+            <Button v-if="$store.state.authUser.role=='student'" @click="cancelEvent(item)">cancel event</Button>
+            <Button v-if="$store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'"
+                    @click="removeEvent(item)">
+              remove event
+            </Button>
           </div>
         </Card>
       </Col>
@@ -57,6 +61,7 @@
     },
 
     async mounted() {
+      // student role
       if(this.$store.state.authUser.role =='student'){
         console.log('\n\n ====== MyEvent Page <|-- user role is student ===== \n');
         const managerId = 'evtmanager' + this.$store.state.authUser.id;
@@ -71,19 +76,14 @@
         console.log('\n\n ======= this.MyEventList ======\n',
           this.myEventList, '\n -------------------');
       }
-      else if(this.$store.state.authUser.role =='cio' || this.$store.state.authUser.role =='staff'){
-        console.log('\n\n ====== MyEvent Page <|-- user role is cio||staff ===== \n');
-        const managerId = 'evtmanager' + this.$store.state.authUser.id;
-        const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
-        console.log('\n\n ====== MyEvent Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
-        this.$store.commit('setAuthUserManager', {userEventManager});
 
-        for(let eventId of this.$store.state.authUserManager.bookedEvents) {
-          const event = (await axios.post('/event/queryByEventId', {eventId})).data;
-          this.myEventList.push(event);
-        }
-        console.log('\n\n ======= this.MyEventList ======\n',
-          this.myEventList, '\n -------------------');
+      // cio and staff role
+      else if(this.$store.state.authUser.role =='cio' || this.$store.state.authUser.role =='staff'){
+
+        const eventsCreated = (await axios.post('/event/queryByCreatedBy', {createdBy:this.$store.state.authUser.id})).data;
+        console.log('\n\n ======= MyEvent Page <|-- Admin Created event =======\n',
+          eventsCreated, '\n ----------------------------');
+        this.myEventList = eventsCreated;
       }
 
 
@@ -101,8 +101,8 @@
         console.log('\n\n ======== myEvent <|-- cancelEvent() ========\n',
           eventId, '\n-------------------');
         const cancelInfo = (await axios.post('/userEventManager/unBookEvent', {eventId,
-            userActorId: this.$store.state.authUser.id,
-            adminActorId: this.$store.state.authUser.id})).data;
+          userActorId: this.$store.state.authUser.id,
+          adminActorId: this.$store.state.authUser.id})).data;
         console.log('\n\n ======== myEvent <|-- cancelEvent() cancelInfo ========\n',
           cancelInfo, '\n-------------------');
 
@@ -115,6 +115,10 @@
         const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
         console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
         this.$store.commit('setAuthUserManager', {userEventManager});
+      },
+
+      async removeEvent(event){
+        console.log('branch out lalala');
       }
     }
   }
