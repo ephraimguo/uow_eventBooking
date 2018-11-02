@@ -1,6 +1,14 @@
 <template>
   <section>
-    <Divider orientation="left">My Events</Divider>
+    <Divider orientation="left"
+             v-if="!!$store.state.authUser && $store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'">
+      Events created by you
+    </Divider>
+
+    <Divider orientation="left"
+             v-if="!!$store.state.authUser && $store.state.authUser.role=='student'">
+      Registered events
+    </Divider>
     <Row>
       <Col v-for="(item, index) of myEventList" :key="'myEvent'+index" class="my-event-card" span="8" offset="2">
         <Card>

@@ -22,7 +22,7 @@
             <p class="eventContent">Event SeatLeft: {{item.capacity - item.seatTaken}} </p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
-              <p>
+              <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
                 <Button v-if="$store.state.authUserManager.bookedEvents.includes(item.id)"
                         type="error"
                         class="cal-event-btn"
@@ -37,7 +37,8 @@
                   Register This Event
                 </Button>
               </p>
-              <ButtonGroup v-if="$store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio'"
+              <ButtonGroup v-if="!!$store.state.authUser &&
+                                 ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio')"
                            size="small"
                            shape="circle">
                 <Button type="success"
@@ -46,12 +47,12 @@
                   Register for others
                 </Button>
                 <Button type="warning"
-                        @click = "showEditCurrentEventModal = true"
+                        @click="onEditEventModalPop(item)"
                         class="cal-event-btn">
                   Edit This Event
                 </Button>
                 <Button type="error"
-                        @click = "showRemoveEventModal = true"
+                        @click="showRemoveEventModal = true"
                         class="cal-event-btn" >
                   Remove This Event
                 </Button>
@@ -80,13 +81,9 @@
     <Modal
         title="Hey, please edit the content carefully"
         v-model="showEditCurrentEventModal"
-        ok-text="update event"
-        cancel-text="hmmm not yet"
-        :mask-closable="false"
-        :closable="false">
-      <p>Edit</p>
-      <p>Edit</p>
-      <p>Edit</p>
+        footer-hide
+        :mask-closable="false">
+      <EditEventPanel @updateEventInfo="updateEventInfo"/>
     </Modal>
 
     <Modal
@@ -107,8 +104,15 @@
 </template>
 
 <script>
+  import EditEventPanel from '@/components/mainPage/EditEventPanel.vue'
+
+  import axios from '@/plugins/axios'
+
   export default {
     name: "EventList",
+    components: {
+      EditEventPanel
+    },
     data() {
       return {
         eventList: this.$store.state.calEventList,
@@ -125,8 +129,24 @@
     // },
     methods: {
       bookingEvent(eventId) {
-        console.log('\n\n ========= EventList <|-- bookingEvent() ======= \n', eventId,'\n -------------------');
+        console.log('\n\n ========= EventList <|-- bookingEvent() ======= \n',
+          eventId,'\n -------------------');
         this.$emit('bookingEvent', eventId);
+      },
+      onEditEventModalPop(item) {
+        this.showEditCurrentEventModal = true;
+        this.$store.commit('setEditingEvent', item);
+
+        console.log('\n\n ======== EventList <|-- onEditEventModalPop() ======== \n',
+          this.$store.state.editingEvent, '\n -------------------');
+      },
+      async updateEventInfo(editingEventInfo) {
+        console.log('\n\n ======== EventList <|-- updateEventInfo() ======= \n',
+          editingEventInfo, '\n ------------------');
+        const updateInfo = (await axios.post('/event/updateEventInfo', {editingEventInfo,
+                                                                        eventId: this.$store.state.editingEvent.id})).data;
+        console.log('\n\n ======== EventList <|-- updateEventInfo() ======= \n',
+          updateInfo, '\n ------------------');
       }
     }
   }

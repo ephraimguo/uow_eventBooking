@@ -15,6 +15,28 @@ router.get('/:id', function (req, res, next) {
   })
 });
 
+router.post('/updateUserInfo', async function(req, res) {
+  console.log('\n\n ======== /users/updateUserInfo/ ======= \n',
+    req.body, '\n --------------------------');
+
+  const userInfo = req.body;
+
+  const userActorId = req.session.authUser.id;
+  const userActor = await req.$domain.get('User', userActorId);
+  try {
+    await userActor.updateInfo(userInfo, userActorId);
+    console.log('\n\n ======== /users/updateUserInfo/ ======== \n',
+      userActor.data, '\n -------------------');
+    req.session.authUser = userActor.data;
+    res.send({data:userActor.data});
+  }
+  catch(err) {
+    res.send({err});
+  }
+});
+
+
+
 router.post('/login', async function(req, res){
   console.log('\n\n ====== /users/login <|-- req.body ====== \n',
     req.body, '\n -------------------');
@@ -33,10 +55,6 @@ router.post('/login', async function(req, res){
     }
     else{
       req.session.authUser = user;
-
-      // const authUserManager = (await req.$domain.get('UserEventManger', 'evtmanager'+user.id));
-
-      // req.session.authUserManager = authUserManager;
 
       console.log('\n\n ======  /users/login <|-- logged in ====== \n',
         req.session.authUser, '\n ----------------');

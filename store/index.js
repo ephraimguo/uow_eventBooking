@@ -6,7 +6,8 @@ export const state = ()=>({
   showDashBoardMenu: false,
   calEventList: [],
   profileUser: null,
-  showEditProfilePanel: false
+  showEditProfilePanel: false,
+  editingEvent: null
 });
 
 export const mutations = {
@@ -32,6 +33,10 @@ export const mutations = {
   },
   loggoutAuthUserManager(state, manager) {
     state.authUserManager = null;
+  },
+
+  setEditingEvent(state, event) {
+    state.editingEvent = event;
   }
 }
 

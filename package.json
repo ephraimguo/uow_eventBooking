@@ -1,8 +1,8 @@
 {
   "name": "uow_event_booking ",
-  "version": "1.0.12",
-  "description": "test",
-  "author": "test",
+  "version": "1.0.15",
+  "description": "Uow Event Booking System",
+  "author": "Ephraim",
   "private": true,
   "scripts": {
     "dev": "node server/index.js",

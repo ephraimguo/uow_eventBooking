@@ -5,7 +5,6 @@
     <Row>
       <Col span="18" offset="3">
         <Card>
-
           <Form ref="newEventForm" :model='newEventInfo' :rules="createNewEventRule" >
             <FormItem label="Event Title" prop="title">
               <Input v-model="newEventInfo.title" type="text"/>

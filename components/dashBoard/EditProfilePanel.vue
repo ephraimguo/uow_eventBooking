@@ -3,37 +3,15 @@
         <Card class="bg-card">
           <Form ref="registrationForm" :model='userProfile' :rules="editProfilePanelRule" >
 
-            <!-- user name input, prop=username -->
-            <!--<FormItem label="User Name" prop="username">-->
-              <!--<Input v-model="userProfile.username" placeholder="Enter your user name"></Input>-->
-            <!--</FormItem>-->
             <!-- prop = perEmail -->
             <FormItem label="E-mail" prop="perEmail">
               <Input v-model="userProfile.perEmail" placeholder="Enter your e-mail"></Input>
             </FormItem>
 
-            <!-- prop = password
-            <FormItem label="Password" prop="password">
-              <Input type='password' v-model="userProfile.password" placeholder="Enter your password"></Input>
-            </FormItem> -->
-
-            <!-- prop = confirmPassword
-            <FormItem label="Confirm Password" prop="confirmPassword">
-              <Input type='password' v-model="userProfile.confirmPassword" placeholder="Confirm your password"></Input>
-            </FormItem> -->
-
             <!-- prop = fullName -->
             <FormItem label="Full Name" prop="fullName">
               <Input v-model="userProfile.fullName" placeholder="Enter your name"></Input>
             </FormItem>
-
-            <!-- prop = uniqueId -->
-            <!--<FormItem label="Student/Admin ID" prop="uniqueId">-->
-              <!--<Input v-model="userProfile.uniqueId" placeholder="Enter your ID No."></Input>-->
-            <!--</FormItem>-->
-
-
-
 
             <!-- prop = phoneNo -->
             <FormItem label="Phone Number" prop="phoneNo">
@@ -51,9 +29,11 @@
 
             <FormItem >
               <Row>
-                <Col span="8" offset="8">
-                  <Button @click="unShowEditPanel()">Cancel</Button> |
-                  <Button type="success">update profile</Button>
+                <Col span="10" offset="8">
+                  <ButtonGroup shape="circle">
+                    <Button type="warning" @click="unShowEditPanel()">Cancel</Button>
+                    <Button type="success" @click="updateUserProfile()">update profile</Button>
+                  </ButtonGroup>
                 </Col>
               </Row>
             </FormItem>
@@ -101,6 +81,9 @@
       unShowEditPanel() {
         // this.showEditPanelFlag = false;
         this.$store.commit('showEditProfilePanel', false);
+      },
+      updateUserProfile() {
+        this.$emit('updateUserInfo', this.userProfile);
       }
     }
   }

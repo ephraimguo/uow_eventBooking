@@ -17,6 +17,7 @@
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
+
       <MenuItem v-if="$route.path.includes('/dashBoard') && !!$store.state.authUser"
                 name="drawer-trigger" >
         <span @click="toggleShow">
@@ -26,6 +27,19 @@
         show dash navigation
         </span>
       </MenuItem>
+
+      <MenuItem v-if="$route.path.includes('/homePage') &&
+                      !!$store.state.authUser &&
+                      ($store.state.authUser.role == 'cio' ||
+                      $store.state.authUser.role == 'staff')"
+                :to="{path:'/dashBoard/createEvent'}"
+                name="drawer-trigger" >
+        <span>
+          <Icon type="ios-add-circle-outline" size="20"/>
+        Add New Event
+        </span>
+      </MenuItem>
+
       <MenuItem  v-if="!!$store.state.authUser" name="userAvatar">
         <Dropdown placement="bottom-start" trigger="click">
           <a href="javascript:void(0)">

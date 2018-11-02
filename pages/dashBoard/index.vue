@@ -21,7 +21,7 @@
         </Card>
       </Col>
       <Col span="12" offset="2" v-if="$store.state.showEditProfilePanel">
-        <EditProfilePanel/>
+        <EditProfilePanel @updateUserInfo="updateUserInfo"/>
       </Col>
     </Row>
   </section>
@@ -56,7 +56,17 @@
         // this.showEditPanelFlag = true;
         this.$store.commit('showEditProfilePanel', true);
       },
+      async updateUserInfo(userProfile) {
+        console.log('\n\n ======= /dashBoard/index/ <|-- updateUserInfo =======\n',
+          userProfile ,'\n ----------------------');
+        const updateInfo = (await axios.post('/users/updateUserInfo', userProfile)).data;
 
+        console.log('\n\n ======= /dashBoard/index/ <|-- updateUserInfo RETURNED ======\n',
+          updateInfo, '\n -----------------');
+
+        const authUser = (await axios.get('/users/'+this.$store.state.authUser.id)).data;
+        this.$store.commit('setAuthUser', authUser);
+      }
     }
 
   }

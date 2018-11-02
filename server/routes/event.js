@@ -41,4 +41,22 @@ router.post('/queryByEventId', async function(req, res) {
   });
 });
 
+router.post('/updateEventInfo', async function(req, res){
+  const {editingEventInfo, eventId} = req.body;
+  console.log('\n\n ======== /event/updateEventInfo/ ========\n editingEventInfo',
+    editingEventInfo, '\n eventId' ,
+    eventId, '\n ---------------------');
+
+  const adminActorId = req.session.authUser.id;
+  const event = await req.$domain.get('Event', eventId);
+  try {
+    await event.updateInfo(editingEventInfo, adminActorId);
+    res.send({data: event.data});
+  }
+  catch(err) {
+    res.send({err});
+  }
+
+});
+
 module.exports = router;
