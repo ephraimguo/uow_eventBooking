@@ -55,19 +55,40 @@
         return redirect('/');
       }
     },
-    async mounted() {
-      const managerId = 'evtmanager' + this.$store.state.authUser.id;
-      const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
-      console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
-      this.$store.commit('setAuthUserManager', {userEventManager});
 
-      for(let eventId of this.$store.state.authUserManager.bookedEvents) {
-        const event = (await axios.post('/event/queryByEventId', {eventId})).data;
-        this.myEventList.push(event);
+    async mounted() {
+      if(this.$store.state.authUser.role =='student'){
+        console.log('\n\n ====== MyEvent Page <|-- user role is student ===== \n');
+        const managerId = 'evtmanager' + this.$store.state.authUser.id;
+        const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+        console.log('\n\n ====== MyEvent Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+        this.$store.commit('setAuthUserManager', {userEventManager});
+
+        for(let eventId of this.$store.state.authUserManager.bookedEvents) {
+          const event = (await axios.post('/event/queryByEventId', {eventId})).data;
+          this.myEventList.push(event);
+        }
+        console.log('\n\n ======= this.MyEventList ======\n',
+          this.myEventList, '\n -------------------');
       }
-      console.log('\n\n ======= this.MyEventList ======\n',
-        this.myEventList, '\n -------------------');
+      else if(this.$store.state.authUser.role =='cio' || this.$store.state.authUser.role =='staff'){
+        console.log('\n\n ====== MyEvent Page <|-- user role is cio||staff ===== \n');
+        const managerId = 'evtmanager' + this.$store.state.authUser.id;
+        const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
+        console.log('\n\n ====== MyEvent Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+        this.$store.commit('setAuthUserManager', {userEventManager});
+
+        for(let eventId of this.$store.state.authUserManager.bookedEvents) {
+          const event = (await axios.post('/event/queryByEventId', {eventId})).data;
+          this.myEventList.push(event);
+        }
+        console.log('\n\n ======= this.MyEventList ======\n',
+          this.myEventList, '\n -------------------');
+      }
+
+
     },
+
     async updated() {
       const managerId = 'evtmanager' + this.$store.state.authUser.id;
       const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;

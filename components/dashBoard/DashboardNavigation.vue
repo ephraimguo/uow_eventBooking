@@ -34,7 +34,8 @@
 
         </MenuGroup>
 
-        <MenuGroup title="Public">
+        <MenuGroup v-if="$store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'"
+                   title="Public">
 
           <MenuItem name="3"
                     to="/dashBoard/createEvent">
@@ -50,7 +51,7 @@
             <span @click="toggleShow">
               <Icon type="md-leaf" />
             Manage Events
-            </span>a
+            </span>
           </MenuItem>
 
         </MenuGroup>

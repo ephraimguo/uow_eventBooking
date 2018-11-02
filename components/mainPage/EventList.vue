@@ -7,7 +7,10 @@
             class="eventCard"
             :key="'calevt'+index"
             :bordered="false">
-          <h2 slot="title">{{item.title}}</h2>
+          <h2 slot="title">
+            <span v-if="item.createdBy == $store.state.authUser.id" style="color:#00bca0">{{item.title}} [my event]</span>
+            <span v-else>{{item.title}}</span>
+          </h2>
           <Card>
             <p class="eventContent">Time: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}} </p>
             <p class="eventContent">Department: {{item.department}} </p>
@@ -19,7 +22,7 @@
             <p class="eventContent">Dressing Code: {{item.dressCode}} </p>
             <p class="eventContent">Address: {{item.venue}} - {{item.roomId}} </p>
             <p class="eventContent">Capacity: {{item.capacity}} </p>
-            <p class="eventContent">Event SeatLeft: {{item.capacity - item.seatTaken}} </p>
+            <p class="eventContent">Attendance: {{item.capacity - item.seatTaken}} </p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
