@@ -57,6 +57,8 @@ router.post('/updateEventInfo', async function(req, res){
     res.send({err});
   }
 
+  // res.send('update Event info successful');
+
 });
 
 module.exports = router;

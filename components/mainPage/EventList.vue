@@ -133,20 +133,29 @@
           eventId,'\n -------------------');
         this.$emit('bookingEvent', eventId);
       },
-      onEditEventModalPop(item) {
-        this.showEditCurrentEventModal = true;
-        this.$store.commit('setEditingEvent', item);
 
-        console.log('\n\n ======== EventList <|-- onEditEventModalPop() ======== \n',
+      onEditEventModalPop(item) {
+        this.$store.commit('setEditingEvent', item);
+        console.log('\n\n ======== EventList <|-- onEditEventModalPop() $store editingEvent======== \n',
           this.$store.state.editingEvent, '\n -------------------');
+        this.showEditCurrentEventModal = true;
       },
+
       async updateEventInfo(editingEventInfo) {
         console.log('\n\n ======== EventList <|-- updateEventInfo() ======= \n',
           editingEventInfo, '\n ------------------');
-        const updateInfo = (await axios.post('/event/updateEventInfo', {editingEventInfo,
-                                                                        eventId: this.$store.state.editingEvent.id})).data;
+        const updateInfo = (await axios.post('/event/updateEventInfo',
+                           {editingEventInfo, eventId: this.$store.state.editingEvent.id})).data;
         console.log('\n\n ======== EventList <|-- updateEventInfo() ======= \n',
           updateInfo, '\n ------------------');
+
+        if(updateInfo.hasOwnProperty('data')){
+          this.$Message.success('Update Successful');
+          this.$emit('updateEventInfo', null);
+        }
+        else if(updateInfo.hasOwnProperty('error')){
+          this.$Message.error('Update failed');
+        }
       }
     }
   }

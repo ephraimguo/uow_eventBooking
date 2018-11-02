@@ -92,6 +92,8 @@ module.exports = class Event extends Actor {
     let isUnique = false;
     let errors = {}
 
+    await evtUnv.giveup('startTimeVenueRoomId', moment(this.data.startTimeRaw).format('X') + this.data.venue + this.data.roomId);
+
     try{
       isUnique = await evtUnv.hold('startTimeVenueRoomId', startTimeVenueRoomId);
     }
@@ -121,7 +123,7 @@ module.exports = class Event extends Actor {
           department,
           coordinator,
           contactNo,
-          contaceEmail,
+          contactEmail,
           company,
           type,
           startTimeRaw,
@@ -133,13 +135,13 @@ module.exports = class Event extends Actor {
           eventPrice,
           poster,
           adminActorId
-        } = event.data;
+        } = event.data.eventData;
         return {
           title,
           department,
           coordinator,
           contactNo,
-          contaceEmail,
+          contactEmail,
           company,
           type,
           startTimeRaw,
@@ -159,7 +161,7 @@ module.exports = class Event extends Actor {
         return {
           seatTaken: json.seatTaken + event.data.quantity,
           lastEditedAt: moment().format('X'),
-          lastEditedBy: event.data.adapter
+          lastEditedBy: event.data.adminActorId
         }
       }
     }

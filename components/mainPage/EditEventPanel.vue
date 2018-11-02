@@ -1,6 +1,6 @@
 <template>
   <section>
-    <Form ref="newEventForm" :model='editingEventInfo' :rules="editEventRule" >
+    <Form ref="editEventPanel" :model='editingEventInfo' :rules="editEventRule" >
       <FormItem label="Event Title" prop="title">
         <Input v-model="editingEventInfo.title" type="text"/>
       </FormItem>
@@ -108,7 +108,7 @@
       <FormItem >
         <Row>
           <Col span="8" offset="8">
-            <Button type="primary" @click="updateEventInfo()" long>Update Event Information</Button>
+            <Button type="primary" @click="updateEventInfo('editEventPanel')" long>Update Event Information</Button>
           </Col>
         </Row>
       </FormItem>
@@ -129,6 +129,7 @@
   export default {
     name: "EditEventPanel",
     data() {
+
       return {
         department: department,
         eventType: eventType,
@@ -137,45 +138,62 @@
         roomId: roomId,
         duration: duration,
         capacity: capacity,
-        editingEventInfo: !!this.$store.state.editingEvent?
-            {
-            title: this.$store.state.editingEvent.title ,
-            department: this.$store.state.editingEvent.department ,
-            coordinator: this.$store.state.editingEvent.coordinator ,
-            contactNo: this.$store.state.editingEvent.contactNo ,
-            contactEmail: this.$store.state.editingEvent.contactEmail ,
-            company: this.$store.state.editingEvent.company,
-            type: this.$store.state.editingEvent.type ,
-            startTimeRaw: this.$store.state.editingEvent.startTimeRaw ,
-            duration: this.$store.state.editingEvent.duration ,
-            dressCode: this.$store.state.editingEvent.dressCode ,
-            venue: this.$store.state.editingEvent.venue ,
-            roomId: this.$store.state.editingEvent.roomId ,
-            capacity: this.$store.state.editingEvent.capacity ,
-            eventPrice: this.$store.state.editingEvent.eventPrice ,
-            poster: this.$store.state.editingEvent.poster ,
-            adminActorId: this.$store.state.editingEvent.adminActorId
-          }
-          :
-            {
-            title: '',
-            department: '',
-            coordinator: '',
-            contactNo: '',
-            contactEmail: '',
-            company: '',
-            type: '',
-            startTimeRaw: String(new Date()),
-            duration: null,
-            dressCode: '',
-            venue: '',
-            roomId: '',
-            capacity: '',
-            eventPrice: 0,
-            poster: '',
-            adminActorId: this.$store.state.authUser.id
-          }
-        ,
+        editingEventInfo:{
+          title: !!this.$store.state.editingEvent?this.$store.state.editingEvent.title : '',
+          department:  '',
+          coordinator:  '',
+          contactNo:  '',
+          contactEmail:  '',
+          company: '',
+          type: '',
+          startTimeRaw:  String(new Date()),
+          duration:  null,
+          dressCode:  '',
+          venue:  '',
+          roomId:  '',
+          capacity:  '',
+          eventPrice:  0,
+          poster:  '',
+          adminActorId: this.$store.state.authUser.id
+        },
+        //   !!this.$store.state.editingEvent?
+        // {
+        //   title: this.$store.state.editingEvent.title || '',
+        //   department: this.$store.state.editingEvent.department ,
+        //   coordinator: this.$store.state.editingEvent.coordinator ,
+        //   contactNo: this.$store.state.editingEvent.contactNo ,
+        //   contactEmail: this.$store.state.editingEvent.contactEmail ,
+        //   company: this.$store.state.editingEvent.company,
+        //   type: this.$store.state.editingEvent.type ,
+        //   startTimeRaw: this.$store.state.editingEvent.startTimeRaw ,
+        //   duration: this.$store.state.editingEvent.duration ,
+        //   dressCode: this.$store.state.editingEvent.dressCode ,
+        //   venue: this.$store.state.editingEvent.venue ,
+        //   roomId: this.$store.state.editingEvent.roomId ,
+        //   capacity: this.$store.state.editingEvent.capacity ,
+        //   eventPrice: this.$store.state.editingEvent.eventPrice ,
+        //   poster: this.$store.state.editingEvent.poster ,
+        //   adminActorId: this.$store.state.editingEvent.adminActorId
+        // }:
+
+        // }{
+        //   title: !!this.$store.state.editingEvent?this.$store.state.editingEvent.title : '',
+        //   department: !!this.$store.state.editingEvent?this.$store.state.editingEvent.department : '',
+        //   coordinator: !!this.$store.state.editingEvent?this.$store.state.editingEvent.coordinator : '',
+        //   contactNo: !!this.$store.state.editingEvent?this.$store.state.editingEvent.contactNo : '',
+        //   contactEmail: !!this.$store.state.editingEvent?this.$store.state.editingEvent.contactEmail : '',
+        //   company:!!this.$store.state.editingEvent?this.$store.state.editingEvent.company :  '',
+        //   type: !!this.$store.state.editingEvent?this.$store.state.editingEvent.type : '',
+        //   startTimeRaw: !!this.$store.state.editingEvent?this.$store.state.editingEvent.startTimeRaw : String(new Date()),
+        //   duration: !!this.$store.state.editingEvent?this.$store.state.editingEvent.duration : null,
+        //   dressCode: !!this.$store.state.editingEvent?this.$store.state.editingEvent.dressCode : '',
+        //   venue: !!this.$store.state.editingEvent?this.$store.state.editingEvent.venue : '',
+        //   roomId: !!this.$store.state.editingEvent?this.$store.state.editingEvent.roomId : '',
+        //   capacity: !!this.$store.state.editingEvent?this.$store.state.editingEvent.capacity : '',
+        //   eventPrice: !!this.$store.state.editingEvent?this.$store.state.editingEvent.eventPrice :  0,
+        //   poster: !!this.$store.state.editingEvent?this.$store.state.editingEvent.poster : '',
+        //   adminActorId: this.$store.state.authUser.id
+        // },
         editEventRule: {
           title: [
             {required: true, message: 'Event title is needed', trigger: 'blur'}
@@ -224,10 +242,18 @@
       }
     },
     methods: {
-      updateEventInfo() {
-        console.log('\n\n ======== EditEventPanel <|-- udpateEventInfo ======== \n',
-          this.editingEventInfo, '\n ----------------------');
-        this.$emit('updateEventInfo', this.editingEventInfo);
+      updateEventInfo(refName) {
+        this.$refs[refName].validate((valid) => {
+          if(valid) {
+            console.log('\n\n ========= EditEventPanel comp<|-- updateEventInfo() ==========\n',
+              this.editingEventInfo,'\n');
+            this.$Message.success('Updating');
+            this.$emit('updateEventInfo', this.editingEventInfo);
+          }
+          else {
+            this.$Message.error('Please fill up properly');
+          }
+        });
       }
     }
   }

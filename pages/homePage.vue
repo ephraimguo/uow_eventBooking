@@ -13,7 +13,7 @@
             disable-time/>
       </no-ssr>
     </Card>
-    <EventList @bookingEvent="bookingEvent"/>
+    <EventList @bookingEvent="bookingEvent" @updateEventInfo="initEvenListOfDay"/>
   </section>
 </template>
 
