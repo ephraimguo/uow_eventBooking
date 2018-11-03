@@ -2,7 +2,7 @@
   <section>
     <Form ref="editEventPanel" :model='editingEventInfo' :rules="editEventRule" >
       <FormItem label="Event Title" prop="title">
-        <Input v-model="editingEventInfo.title" type="text"/>
+        <Input v-model="editingEventInfo.title" type="text"></Input>
       </FormItem>
 
       <FormItem label="Department" prop="department">
@@ -240,6 +240,25 @@
           }],
         }
       }
+    },
+    asyncData({store}) {
+      console.log('\n\n ======== EditEventPanel <|-- asyncData() ======== \n', store.state.editingEvent);
+    },
+    mounted() {
+      // this.editingEventInfo = this.$store.state.editingEvent;
+      console.log('\n\n ======== EditEventPanel <|-- mounted() ======== \n', this.$store.state.editingEvent);
+
+      // this.editingEvent = {};
+      this.$nextTick(() => {
+        this.editingEventInfo = !!this.$store.state.editingEvent? this.$store.state.editingEventInfo:{}
+      });
+    },
+    beforeUpdate() {
+      console.log('\n\n ======== EditEventPanel <|-- beforUdate() ======== \n', this.$store.state.editingEvent);
+
+    },
+    updated() {
+      console.log('\n\n ======== EditEventPanel <|-- updated() ======== \n', this.$store.state.editingEvent);
     },
     methods: {
       updateEventInfo(refName) {

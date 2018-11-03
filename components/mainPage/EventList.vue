@@ -6,10 +6,20 @@
     <Col span="18" offset="3">
       <div style="background:#eee;padding: 20px">
 
-        <Collapse v-for="(item, index) of $store.state.calEventList">
+        <Collapse v-for="(item, index) of $store.state.calEventList" :key="'accordion'+index">
 
           <Panel>
-            <span>{{item.title}} | Time: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}}</span>
+            <span>
+              {{item.title}} | Time: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}}
+            </span>
+            <span v-if="item.createdBy == $store.state.authUser.id"
+                  style="color:#00bca0">
+              [MY event]
+            </span>
+            <span v-else
+                  style="color:#ff0066">
+              [NOT my event]
+            </span>
             <div slot="content">
 
 
@@ -54,11 +64,13 @@
                                  ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio')"
                            size="small"
                            shape="circle">
+                <!--
                 <Button type="success"
                         @click="showRegForOthersModal = true"
                         class="cal-event-btn" >
                   Register for others
                 </Button>
+                -->
                 <Button type="warning"
                         @click="onEditEventModalPop(item)"
                         class="cal-event-btn">
@@ -117,9 +129,7 @@
       <p>Key In the title of the event to remove</p>
     </Modal>
 
-
   </Row>
-
 </template>
 
 <script>
@@ -153,6 +163,7 @@
         this.$emit('bookingEvent', eventId);
       },
 
+      // ======== On Edit Event Modal Popup ========
       onEditEventModalPop(item) {
         this.$store.commit('setEditingEvent', item);
         console.log('\n\n ======== EventList <|-- onEditEventModalPop() $store editingEvent======== \n',
@@ -175,8 +186,11 @@
         else if(updateInfo.hasOwnProperty('error')){
           this.$Message.error('Update failed');
         }
+      },
+      testingVisible() {
+        console.log('\n\n ===== ON visible change ===== \n');
       }
-    }
+     }
   }
 </script>
 
