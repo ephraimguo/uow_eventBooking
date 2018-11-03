@@ -22,7 +22,7 @@
             <p class="eventContent">Dressing Code: {{item.dressCode}} </p>
             <p class="eventContent">Address: {{item.venue}} - {{item.roomId}} </p>
             <p class="eventContent">Capacity: {{item.capacity}} </p>
-            <p class="eventContent">Attendance: {{item.capacity - item.seatTaken}} </p>
+            <p class="eventContent">Attendance: {{item.seatTaken}}/{{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
