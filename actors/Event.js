@@ -56,6 +56,7 @@ module.exports = class Event extends Actor {
       roomId,
       capacity,
       eventPrice,
+      promoCode,
       poster,
       adminActorId
     } = data;
@@ -76,6 +77,7 @@ module.exports = class Event extends Actor {
       capacity,
       seatTaken:0,
       eventPrice,
+      promoCode,
       poster,
       createdBy: adminActorId,
       createdAt: moment().format('X'),
@@ -133,6 +135,7 @@ module.exports = class Event extends Actor {
           roomId,
           capacity,
           eventPrice,
+          promoCode,
           poster,
           adminActorId
         } = event.data.eventData;
@@ -152,6 +155,7 @@ module.exports = class Event extends Actor {
           roomId,
           capacity,
           eventPrice,
+          promoCode,
           poster,
           lastEditedBy: adminActorId,
           lastEditedAt: moment().format('X')

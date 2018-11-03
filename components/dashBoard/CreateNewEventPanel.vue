@@ -34,6 +34,10 @@
               <Input v-model="newEventInfo.coordinator" type="text"/>
             </FormItem>
 
+            <FormItem label="Promo Code" prop="coordinator">
+              <Input v-model="newEventInfo.promoCode" type="text"/>
+            </FormItem>
+
             <FormItem label="Event Type" prop="type">
               <Select label="Select Event Type" v-model="newEventInfo.type" style="width:100%">
                 <Option v-for="(item, index) in eventType" :value="item" :key="index">
@@ -86,7 +90,6 @@
             </FormItem>
 
             <FormItem label="Room ID" prop="roomId">
-              <!--<Input v-model="newEventInfo.roomId" type="text"/>-->
               <Select label="Which room is to be taken?" v-model="newEventInfo.roomId" style="width:100%">
                 <Option v-for="(item, index) in roomId" :value="item" :key="index">
                   {{ item }}
@@ -95,7 +98,6 @@
             </FormItem>
 
             <FormItem label="Event Capacity" prop="capacity">
-              <!--<Input v-model="newEventInfo.capacity" type="text"/>-->
               <Select label="Which room is to be taken?" v-model="newEventInfo.capacity" style="width:100%">
                 <Option
                     v-for="(item, index) in capacity"
@@ -106,7 +108,6 @@
             </FormItem>
 
             <FormItem label="Ticket Price" prop="eventPrice">
-              <!--<Input v-model="newEventInfo.eventPrice" type="text"/>-->
               <Input v-model="newEventInfo.eventPrice" prefix="logo-usd" placeholder="Is it a free($0.00) event?" style="width:100%" />
             </FormItem>
 
@@ -151,6 +152,7 @@
           title: '',
           department: '',
           coordinator: '',
+          promoCode: '',
           contactNo: '',
           contactEmail: '',
           company: '',

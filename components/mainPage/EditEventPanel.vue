@@ -29,6 +29,10 @@
         <Input v-model="editingEventInfo.coordinator" type="text"/>
       </FormItem>
 
+      <FormItem label="Promo Code" prop="coordinator">
+        <Input v-model="editingEventInfo.promoCode" type="text"/>
+      </FormItem>
+
       <FormItem label="Event Type" prop="type">
         <Select label="Select Event Type" v-model="editingEventInfo.type" style="width:100%">
           <Option v-for="(item, index) in eventType" :value="item" :key="index">
@@ -130,6 +134,16 @@
     name: "EditEventPanel",
     data() {
 
+      // let editingEventInfo = null;
+      // for(let evt of this.$store.state.calEventList){
+      //   if(evt.id === this.$store.state.editingEvent.id){
+      //     editingEventInfo = evt;
+      //   }
+      // }
+      // this.$nextTick(()=>{
+      //   this.editingEventInfo = this.$store.state.editingEvent || null;
+      // });
+
       return {
         department: department,
         eventType: eventType,
@@ -145,6 +159,7 @@
           contactNo:  '',
           contactEmail:  '',
           company: '',
+          promoCode: '',
           type: '',
           startTimeRaw:  String(new Date()),
           duration:  null,

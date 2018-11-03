@@ -45,6 +45,7 @@
             <p class="eventContent">Attendance: {{item.seatTaken}}/{{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
+              <Input v-if="!!item.promoCode" placeholder="enter the promo code if you have it"/>
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
                 <Button v-if="$store.state.authUserManager.bookedEvents.includes(item.id)"
                         type="error"
