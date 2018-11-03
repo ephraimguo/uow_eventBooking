@@ -1,9 +1,19 @@
 <template>
   <Row>
+
+
+
     <Col span="18" offset="3">
       <div style="background:#eee;padding: 20px">
+
+        <Collapse v-for="(item, index) of $store.state.calEventList">
+
+          <Panel>
+            <span>{{item.title}} | Time: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}}</span>
+            <div slot="content">
+
+
         <Card
-            v-for="(item, index) of $store.state.calEventList"
             class="eventCard"
             :key="'calevt'+index"
             :bordered="false">
@@ -63,9 +73,15 @@
             </div>
           </Card>
         </Card>
+            </div>
+          </Panel>
+        </Collapse>
+
         <hr>
       </div>
+
     </Col>
+
 
     <!-- on-ok / on-cancel, these two are modal events -->
 
