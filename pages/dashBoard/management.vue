@@ -7,9 +7,9 @@
     </Divider>
 
     <Row>
-      <Col v-for="">
+      <!--<Col v-for="">-->
 
-      </Col>
+      <!--</Col>-->
     </Row>
 
     <p>this is management page</p>

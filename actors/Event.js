@@ -119,7 +119,7 @@ module.exports = class Event extends Actor {
 
   updateRevenue(price, hasPromocode) {
 
-    this.$({price: hasPromocode?price:(price*0.8)});
+    this.$({evtPrice: hasPromocode?(price*0.8):price});
   }
 
 
@@ -175,8 +175,9 @@ module.exports = class Event extends Actor {
         }
       },
       updateRevenue(json, event) {
+        const {evtPrice} = event.data;
         return {
-          eventPrice: event.data.price
+          revenue: Number(json.revenue) + Number(evtPrice)
         }
       }
     }

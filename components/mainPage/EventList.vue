@@ -163,16 +163,27 @@
       async bookingEvent(event) {
         // const eventId = event.id;
         if(!!event.promoCode){
-          console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
-            this.tempPromoCode,'\n -------------------');
-          this.tempPromoCode = '';
-          console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
-            this.tempPromoCode,'\n -------------------');
-          this.$emit('bookingEvent', event.id);
+          if(event.promoCode == this.tempPromoCode){
+            console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
+              this.tempPromoCode,'\n -------------------');
+            this.tempPromoCode = '';
+            console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
+              this.tempPromoCode,'\n -------------------');
+            this.$emit('bookingEvent', event.id);
 
-          const {eventId, hasPromocode} = (await axios.post('/event/updateEventRevenue', {eventId: event.id, hasPromocode: true})).data;
-          console.log('\n\n ====== homePage <|-- bookingEvent update revenue ====== \n',
-            eventId, hasPromocode, '\n ---------------------------------');
+            const {eventId, hasPromocode} = (await axios.post('/event/updateEventRevenue', {eventId: event.id, hasPromocode: true})).data;
+            console.log('\n\n ====== homePage <|-- bookingEvent update revenue ====== \n',
+              eventId, hasPromocode, '\n ---------------------------------');
+          }
+          else{
+            console.log('\n\n ======== EventList <|-- bookingEvent() NO promocode \n');
+            this.$emit('bookingEvent', event.id);
+
+            const {eventId, hasPromocode} = (await axios.post('/event/updateEventRevenue', {eventId: event.id, hasPromocode: false})).data;
+            console.log('\n\n ====== homePage <|-- bookingEvent update revenue ====== \n',
+              eventId, hasPromocode, '\n ---------------------------------');
+          }
+
 
         }
         else {
