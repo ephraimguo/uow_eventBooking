@@ -42,10 +42,10 @@
             <p class="eventContent">Dressing Code: {{item.dressCode}} </p>
             <p class="eventContent">Address: {{item.venue}} - {{item.roomId}} </p>
             <p class="eventContent">Capacity: {{item.capacity}} </p>
-            <p class="eventContent">Attendance: {{item.seatTaken}}/{{item.capacity}}</p>
+            <p class="eventContent">Attendance: {{item.seatTaken}} / {{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
-              <Input v-if="!!item.promoCode && $store.state.authUser.role == 'student'"
+              <Input v-if="(!!item.promoCode && $store.state.authUser.role == 'student') || !($store.state.authUserManager.bookedEvents.includes(item.id))"
                      placeholder="enter the promo code"
                      ref="promoCodeTag"
                      @on-enter="checkPromocode(item, $event.target, 'promoCodeTag')"/>
@@ -60,7 +60,7 @@
                 <Button  v-else
                          type="primary"
                          class="cal-event-btn"
-                         @click="bookingEvent(item.id)">
+                         @click="bookingEvent(item)">
                   Register This Event
                 </Button>
               </p>
@@ -94,8 +94,7 @@
 
     <!-- on-ok / on-cancel, these two are modal events -->
 
-    <Modal
-        title="Yay! You are help others register"
+    <Modal title="Yay! You are help others register"
         v-model="showRegForOthersModal"
         ok-text="woow it's done"
         cancel-text="no, not for them..."
@@ -106,16 +105,14 @@
       <p>Reg for other</p>
     </Modal>
 
-    <Modal
-        title="Hey, please edit the content carefully"
+    <Modal title="Hey, please edit the content carefully"
         v-model="showEditCurrentEventModal"
         footer-hide
         :mask-closable="false">
       <EditEventPanel @updateEventInfo="updateEventInfo()"/>
     </Modal>
 
-    <Modal
-        title="Oh no, are you sure?"
+    <Modal title="Oh no, are you sure?"
         v-model="showRemoveEventModal"
         ok-text="remove it"
         cancel-text="cancel remove"
@@ -124,6 +121,12 @@
       <p>Key In the title of the event to remove</p>
       <p>Key In the title of the event to remove</p>
       <p>Key In the title of the event to remove</p>
+    </Modal>
+
+    <Modal title="No worries, you will be registered after payment"
+           ok-text="Confirm booking"
+           v-model="showPaymentPanel">
+
     </Modal>
 
   </Row>
@@ -142,10 +145,11 @@
     data() {
       return {
         eventList: this.$store.state.calEventList,
-        promoCode: '',
+        tempPromoCode: '',
         showRegForOthersModal: false,
         showEditCurrentEventModal: false,
-        showRemoveEventModal: false
+        showRemoveEventModal: false,
+        showPaymentPanel: false
       }
     },
     async fetch({store}){
@@ -155,10 +159,31 @@
     //   this.$store.commit('setCalEventList', )
     // },
     methods: {
-      bookingEvent(eventId) {
-        console.log('\n\n ========= EventList <|-- bookingEvent() ======= \n',
-          eventId,'\n -------------------');
-        this.$emit('bookingEvent', eventId);
+      async bookingEvent(event) {
+        // const eventId = event.id;
+        if(!!event.promoCode){
+          console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
+            this.tempPromoCode,'\n -------------------');
+          this.tempPromoCode = '';
+          console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
+            this.tempPromoCode,'\n -------------------');
+          this.$emit('bookingEvent', event.id);
+
+          const {eventId, hasPromocode} = (await axios.post('/event/updateEventRevenue', {eventId: event.id, hasPromocode: true})).data;
+          console.log('\n\n ====== homePage <|-- bookingEvent update revenue ====== \n',
+            eventId, hasPromocode, '\n ---------------------------------');
+
+        }
+        else {
+
+          console.log('\n\n ======== EventList <|-- bookingEvent() NO promocode \n');
+          this.$emit('bookingEvent', event.id);
+
+          const {eventId, hasPromocode} = (await axios.post('/event/updateEventRevenue', {eventId: event.id, hasPromocode: false})).data;
+          console.log('\n\n ====== homePage <|-- bookingEvent update revenue ====== \n',
+            eventId, hasPromocode, '\n ---------------------------------');
+
+        }
       },
 
       // ======== On Edit Event Modal Popup ========
@@ -190,15 +215,19 @@
         if(inputTag.value == event.promoCode){
           console.log('\n ===== successfully verified promo code =====');
           this.$Message.success('Yay, promocode verified successfully');
-          console.log('\n\n ====== this.$refs.refName ===== \n', this.$refs[refName], '\n ------');
+
+          this.tempPromoCode = event.promoCode;
+          console.log('\n\n ====== this.$refs.refName.disabled ===== \n', this.$refs[refName].disabled, '\n ------');
           inputTag.disabled = true;
         }
         else {
           console.log('\n\n ===== EvenList <|-- checkPromocode =====\n event:',
             event,'\n input:',
             inputTag.value,
-            this.promoCode,'\n --------------------');
-          console.log('\n\n ====== this.$refs.refName ===== \n', inputTag.disabled, '\n ------');
+            this.tempPromoCode,'\n --------------------');
+
+          this.tempPromoCode = event.promoCode;
+          this.$Message.error('Sorry, this is not the promo code');
         }
       }
      }

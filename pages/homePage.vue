@@ -14,8 +14,6 @@
     </Card>
     <EventList @bookingEvent="bookingEvent"
                @updateEventInfo="initEvenListOfDay"/>
-
-
   </section>
 </template>
 
@@ -53,6 +51,7 @@
       this.initEvenListOfDay();
     },
     methods: {
+
       async initEvenListOfDay(){
         const events = (await axios.post('/event/queryByDate',
                                 {currentDateRaw: this.currentDateRaw})).data;
@@ -73,6 +72,7 @@
         const managerId = 'evtmanager' + this.$store.state.authUser.id;
         const {userEventManager} = (await axios.post('/userEventManager/queryById', {managerId})).data;
         console.log('\n\n ====== home Page <|-- After LogIn get current Manager ====== \n', userEventManager, '\n -----------');
+
         this.$store.commit('setAuthUserManager', {userEventManager});
         this.initEvenListOfDay();
       }

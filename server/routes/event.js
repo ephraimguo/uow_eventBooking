@@ -72,8 +72,20 @@ router.post('/updateEventInfo', async function(req, res){
     res.send({err});
   }
 
-  // res.send('update Event info successful');
+});
 
+router.post('/updateEventRevenue', async function(req, res){
+  const {eventId, hasPromocode} = req.body;
+  console.log('\n\n ====== /event/updateEventRevenue ====== \n',
+    eventId, hasPromocode, '\n ------------------');
+
+  const event = await req.$domain.get('Event', eventId);
+
+  const price = event.data.eventPrice;
+
+  await event.updateRevenue(price, hasPromocode);
+
+  res.send({eventId, hasPromocode});
 });
 
 module.exports = router;
