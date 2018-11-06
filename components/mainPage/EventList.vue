@@ -45,8 +45,9 @@
             <p class="eventContent">Attendance: {{item.seatTaken}} / {{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
-              <Input v-if="(!!item.promoCode && $store.state.authUser.role == 'student') || !($store.state.authUserManager.bookedEvents.includes(item.id))"
+              <Input v-if="(!!item.promoCode && $store.state.authUser.role == 'student')"
                      placeholder="enter the promo code"
+                     :disabled="$store.state.authUserManager.bookedEvents.includes(item.id)"
                      ref="promoCodeTag"
                      @on-enter="checkPromocode(item, $event.target, 'promoCodeTag')"/>
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
