@@ -19,13 +19,14 @@
             </FormItem>
 
             <!-- prop = role -->
+            <!--
             <FormItem label="Role" prop="role">
               <RadioGroup v-model="userProfile.role">
                 <Radio label="cio">CIO</Radio>
                 <Radio label="staff">Staff</Radio>
                 <Radio label="student">Student</Radio>
               </RadioGroup>
-            </FormItem>
+            </FormItem> -->
 
             <FormItem >
               <Row>
@@ -53,7 +54,7 @@
           fullName: this.$store.state.authUser.fullName,
           perEmail: this.$store.state.authUser.perEmail,
           phoneNo: this.$store.state.authUser.phoneNo,
-          role: this.$store.state.authUser.role
+          // role: this.$store.state.authUser.role
         },
         editProfilePanelRule: {
           username:[
@@ -65,9 +66,9 @@
           perEmail:[
             { required: true, message: 'Please enter your e-mail', trigger: 'blur'},
           ],
-          role: [
-            { required: true, message: 'X', trigger: 'blur'},
-          ],
+          // role: [
+          //   { required: true, message: 'X', trigger: 'blur'},
+          // ],
           uniqueId: [
             {required: true, message:'Please enter your student/admin ID'}
           ],

@@ -6,10 +6,9 @@
             color="#00bca0"
             v-model="currentDateRaw"
             format="YYYY-MM-DD"
-            formatted="X"
+            formatted="DD-MM-YYYY HH:mm"
             label="Choose date"
             enable-button-validate
-            without-input
             disable-time/>
       </no-ssr>
     </Card>

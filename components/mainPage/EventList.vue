@@ -45,7 +45,10 @@
             <p class="eventContent">Attendance: {{item.seatTaken}}/{{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
             <div class="eventContent" style="width:100%">
-              <Input v-if="!!item.promoCode" placeholder="enter the promo code if you have it"/>
+              <Input v-if="!!item.promoCode && $store.state.authUser.role == 'student'"
+                     placeholder="enter the promo code"
+                     ref="promoCodeTag"
+                     @on-enter="checkPromocode(item, $event.target, 'promoCodeTag')"/>
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
                 <Button v-if="$store.state.authUserManager.bookedEvents.includes(item.id)"
                         type="error"
@@ -65,13 +68,6 @@
                                  ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio')"
                            size="small"
                            shape="circle">
-                <!--
-                <Button type="success"
-                        @click="showRegForOthersModal = true"
-                        class="cal-event-btn" >
-                  Register for others
-                </Button>
-                -->
                 <Button type="warning"
                         @click="onEditEventModalPop(item)"
                         class="cal-event-btn">
@@ -115,7 +111,7 @@
         v-model="showEditCurrentEventModal"
         footer-hide
         :mask-closable="false">
-      <EditEventPanel @updateEventInfo="updateEventInfo"/>
+      <EditEventPanel @updateEventInfo="updateEventInfo()"/>
     </Modal>
 
     <Modal
@@ -146,6 +142,7 @@
     data() {
       return {
         eventList: this.$store.state.calEventList,
+        promoCode: '',
         showRegForOthersModal: false,
         showEditCurrentEventModal: false,
         showRemoveEventModal: false
@@ -190,6 +187,24 @@
       },
       testingVisible() {
         console.log('\n\n ===== ON visible change ===== \n');
+      },
+
+      checkPromocode(event, inputTag, refName) {
+        if(inputTag.value == event.promoCode){
+          console.log('\n ===== successfully verified promo code =====');
+          this.$Message.success('Yay, promocode verified successfully');
+          console.log('\n\n ====== this.$refs.refName ===== \n', this.$refs[refName], '\n ------');
+          inputTag.disabled = true;
+          // inputTag.props.disabled = true;
+          // this.$Message.success('Fail!');
+        }
+        else {
+          console.log('\n\n ===== EvenList <|-- checkPromocode =====\n event:',
+            event,'\n input:',
+            inputTag.value,
+            this.promoCode,'\n --------------------');
+          console.log('\n\n ====== this.$refs.refName ===== \n', inputTag.disabled, '\n ------');
+        }
       }
      }
   }

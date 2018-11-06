@@ -29,7 +29,7 @@
         <Input v-model="editingEventInfo.coordinator" type="text"/>
       </FormItem>
 
-      <FormItem label="Promo Code" prop="coordinator">
+      <FormItem label="Promo Code" prop="promoCode">
         <Input v-model="editingEventInfo.promoCode" type="text"/>
       </FormItem>
 
@@ -57,7 +57,6 @@
       </FormItem>
 
       <FormItem label="Duration(Hours)" prop="duration">
-        <!--<Input v-model="editingEventInfo.duration" type="text"/>-->
         <Select label="How long does it take?" v-model="editingEventInfo.duration" style="width:100%">
           <Option v-for="(item, index) in duration" :value="item" :key="index">
             {{ item }}
@@ -66,8 +65,6 @@
       </FormItem>
 
       <FormItem label="dressCode" prop="dressCode">
-        <!--<Input v-model="editingEventInfo.dressCode" type="text"/>-->
-        <!--dressCode-->
         <Select label="How is the dressing code?" v-model="editingEventInfo.dressCode" style="width:100%">
           <Option v-for="(item, index) in dressCode" :value="item" :key="index">
             {{ item }}
@@ -76,7 +73,6 @@
       </FormItem>
 
       <FormItem label="Venue" prop="venue">
-        <!--<Input v-model="editingEventInfo.venue" type="text"/>-->
         <Select label="Where is the place?" v-model="editingEventInfo.venue" style="width:100%">
           <Option v-for="(item, index) in venue" :value="item" :key="index">
             {{ item }}
@@ -85,7 +81,6 @@
       </FormItem>
 
       <FormItem label="Room ID" prop="roomId">
-        <!--<Input v-model="editingEventInfo.roomId" type="text"/>-->
         <Select label="Which room is to be taken?" v-model="editingEventInfo.roomId" style="width:100%">
           <Option v-for="(item, index) in roomId" :value="item" :key="index">
             {{ item }}
@@ -94,7 +89,6 @@
       </FormItem>
 
       <FormItem label="Event Capacity" prop="capacity">
-        <!--<Input v-model="editingEventInfo.capacity" type="text"/>-->
         <Select label="Which room is to be taken?" v-model="editingEventInfo.capacity" style="width:100%">
           <Option
               v-for="(item, index) in capacity"
@@ -153,7 +147,7 @@
         duration: duration,
         capacity: capacity,
         editingEventInfo:{
-          title: !!this.$store.state.editingEvent?this.$store.state.editingEvent.title : '',
+          title: '',//!!this.$store.state.editingEvent?this.$store.state.editingEvent.title : '',
           department:  '',
           coordinator:  '',
           contactNo:  '',
@@ -269,8 +263,7 @@
       });
     },
     beforeUpdate() {
-      console.log('\n\n ======== EditEventPanel <|-- beforUdate() ======== \n', this.$store.state.editingEvent);
-
+      console.log('\n\n ======== EditEventPanel <|-- beforeUqdate() ======== \n', this.$store.state.editingEvent);
     },
     updated() {
       console.log('\n\n ======== EditEventPanel <|-- updated() ======== \n', this.$store.state.editingEvent);
