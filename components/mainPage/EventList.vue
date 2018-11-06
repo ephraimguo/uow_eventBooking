@@ -185,9 +185,6 @@
           this.$Message.error('Update failed');
         }
       },
-      testingVisible() {
-        console.log('\n\n ===== ON visible change ===== \n');
-      },
 
       checkPromocode(event, inputTag, refName) {
         if(inputTag.value == event.promoCode){
@@ -195,8 +192,6 @@
           this.$Message.success('Yay, promocode verified successfully');
           console.log('\n\n ====== this.$refs.refName ===== \n', this.$refs[refName], '\n ------');
           inputTag.disabled = true;
-          // inputTag.props.disabled = true;
-          // this.$Message.success('Fail!');
         }
         else {
           console.log('\n\n ===== EvenList <|-- checkPromocode =====\n event:',

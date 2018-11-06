@@ -79,6 +79,7 @@ module.exports = class Event extends Actor {
       eventPrice,
       promoCode,
       poster,
+      revenue: 0,
       createdBy: adminActorId,
       createdAt: moment().format('X'),
       lastEditedBy: adminActorId,
@@ -114,6 +115,11 @@ module.exports = class Event extends Actor {
 
   updateSeats(quantity, adminActorId){
     this.$({quantity, adminActorId});
+  }
+
+  updateRevenue(price, hasPromocode) {
+
+    this.$({price: hasPromocode?price:(price*0.8)});
   }
 
 
@@ -166,6 +172,11 @@ module.exports = class Event extends Actor {
           seatTaken: json.seatTaken + event.data.quantity,
           lastEditedAt: moment().format('X'),
           lastEditedBy: event.data.adminActorId
+        }
+      },
+      updateRevenue(json, event) {
+        return {
+          eventPrice: event.data.price
         }
       }
     }
