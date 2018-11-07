@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17ef1056-31c2-4e59-844f-4b703d4e8711" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/actors/UserEventManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/actors/UserEventManager.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/mainPage/EventList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/components/mainPage/EventList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/dashBoard/myEvents.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashBoard/myEvents.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/event.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/event.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,8 +40,8 @@
           <entry key="auxo" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="ico" value="2" />
-          <entry key="js" value="135" />
-          <entry key="json" value="28" />
+          <entry key="js" value="138" />
+          <entry key="json" value="29" />
           <entry key="lock" value="1" />
           <entry key="md" value="4" />
           <entry key="ts" value="1" />
@@ -47,8 +51,8 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Image" value="2" />
-          <entry key="JSON" value="28" />
-          <entry key="JavaScript" value="136" />
+          <entry key="JSON" value="29" />
+          <entry key="JavaScript" value="139" />
           <entry key="Markdown" value="4" />
           <entry key="PLAIN_TEXT" value="2" />
           <entry key="TypeScript" value="1" />
@@ -59,18 +63,18 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="16" />
-          <entry key="js" value="17116" />
-          <entry key="json" value="378" />
-          <entry key="vue" value="26565" />
+          <entry key="js" value="18297" />
+          <entry key="json" value="379" />
+          <entry key="vue" value="26853" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="5" />
-          <entry key="JSON" value="378" />
-          <entry key="JavaScript" value="17111" />
+          <entry key="JSON" value="379" />
+          <entry key="JavaScript" value="18292" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Vue.js" value="26565" />
+          <entry key="Vue.js" value="26853" />
         </counts>
       </usages-collector>
     </session>
@@ -118,7 +122,7 @@
         <entry file="file://$PROJECT_DIR$/components/mainPage/EditEventPanel.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="436">
-              <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="n#style#0;n#Select#0;n#FormItem#1;n#Form#0;n#section#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#Select#0;n#FormItem#9;n#Form#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -131,17 +135,65 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/mainPage/EventList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+            <state relative-caret-position="588">
+              <caret line="242" column="47" selection-start-line="242" selection-start-column="47" selection-end-line="242" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#span#1;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#2;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#Card#0;n#Card#0;n#div#0;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="e#4998#5067#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/dashBoard/myEvents.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="445">
+              <caret line="181" column="28" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
+              <folding>
+                <element signature="e#2309#2378#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/routes/event.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/actors/UserEventManager.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="19" column="18" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="53" column="26" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/actors/Event.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="91" column="62" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="62" />
             </state>
           </provider>
         </entry>
@@ -156,49 +208,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="36" column="96" selection-start-line="36" selection-start-column="96" selection-end-line="36" selection-end-column="96" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/dashBoard/CreateNewEventPanel.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="430">
-              <caret line="177" column="11" lean-forward="true" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/contactUs.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="40">
-              <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/dashBoard/myEvents.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
-              <folding>
-                <element signature="e#2309#2378#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/listeners/onBookEvent.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="52" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
+              <caret line="177" column="11" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -208,15 +221,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="3" column="49" selection-start-line="3" selection-start-column="49" selection-end-line="3" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/entries/interceptor/seatInterceptor.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -249,6 +253,7 @@
       <find>newEventInfo</find>
       <find>title</find>
       <find>coordin</find>
+      <find>removeEvent</find>
     </findStrings>
     <replaceStrings>
       <replace>eventDivider</replace>
@@ -285,16 +290,13 @@
         <option value="$PROJECT_DIR$/listeners/general.js" />
         <option value="$PROJECT_DIR$/listeners/onCreateUser.js" />
         <option value="$PROJECT_DIR$/pages/index.vue" />
-        <option value="$PROJECT_DIR$/actors/UserEventManager.js" />
         <option value="$PROJECT_DIR$/actors/User.js" />
         <option value="$PROJECT_DIR$/pages/dashBoard/index.vue" />
         <option value="$PROJECT_DIR$/server/routes/users.js" />
         <option value="$PROJECT_DIR$/store/index.js" />
-        <option value="$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue" />
         <option value="$PROJECT_DIR$/components/dashBoard/CreateNewEventPanel.vue" />
         <option value="$PROJECT_DIR$/components/dashBoard/EditProfilePanel.vue" />
         <option value="$PROJECT_DIR$/pages/homePage.vue" />
-        <option value="$PROJECT_DIR$/server/routes/event.js" />
         <option value="$PROJECT_DIR$/pages/dashBoard/management.vue" />
         <option value="$PROJECT_DIR$/components/default-hearder.vue" />
         <option value="$PROJECT_DIR$/pages/contactUs.vue" />
@@ -310,10 +312,13 @@
         <option value="$PROJECT_DIR$/entries/interceptor.js" />
         <option value="$PROJECT_DIR$/server/routes/userEventManager.js" />
         <option value="$PROJECT_DIR$/entries/interceptor/seatInterceptor.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/components/mainPage/EditEventPanel.vue" />
-        <option value="$PROJECT_DIR$/pages/dashBoard/myEvents.vue" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue" />
         <option value="$PROJECT_DIR$/components/mainPage/EventList.vue" />
+        <option value="$PROJECT_DIR$/actors/UserEventManager.js" />
+        <option value="$PROJECT_DIR$/pages/dashBoard/myEvents.vue" />
+        <option value="$PROJECT_DIR$/server/routes/event.js" />
       </list>
     </option>
   </component>
@@ -426,6 +431,12 @@
             <path>
               <item name="uow_eventBooking" type="b2602c69:ProjectViewProjectNode" />
               <item name="uow_eventBooking" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="routes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uow_eventBooking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uow_eventBooking" type="462c0819:PsiDirectoryNode" />
               <item name="spec" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -509,12 +520,12 @@
       <workItem from="1541430763860" duration="3049000" />
       <workItem from="1541486715598" duration="4283000" />
       <workItem from="1541504319618" duration="9840000" />
-      <workItem from="1541559058106" duration="17289000" />
+      <workItem from="1541559058106" duration="21513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163751000" />
+    <option name="totallyTimeSpent" value="167975000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1680" height="990" extended-state="6" />
@@ -666,13 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/UserEventManager.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/dashBoard/index.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -764,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/userEventManager.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -802,24 +799,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/actors/Event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="156" column="52" selection-start-line="156" selection-start-column="52" selection-end-line="156" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/entries/interceptor/seatInterceptor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -851,31 +834,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/RegisterPanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="865">
-          <caret line="143" column="55" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="36" column="96" selection-start-line="36" selection-start-column="96" selection-end-line="36" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/dashBoard/CreateNewEventPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
-          <caret line="177" column="11" lean-forward="true" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
+          <caret line="177" column="11" selection-start-line="177" selection-start-column="11" selection-end-line="177" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="20" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/mainPage/EditEventPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="436">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
           <folding>
             <element signature="n#style#0;n#Select#0;n#FormItem#1;n#Form#0;n#section#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#Select#0;n#FormItem#9;n#Form#0;n#section#0;n#template#0;n#!!top" expanded="true" />
@@ -887,26 +863,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/dashBoard/myEvents.vue">
+    <entry file="file://$PROJECT_DIR$/components/dashBoard/DashboardNavigation.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="96" column="12" selection-start-line="96" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
-          <folding>
-            <element signature="e#2309#2378#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="465">
+          <caret line="53" column="26" selection-start-line="53" selection-start-column="26" selection-end-line="53" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/RegisterPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="865">
+          <caret line="143" column="55" selection-start-line="143" selection-start-column="55" selection-end-line="143" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/mainPage/EventList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="47" column="32" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+        <state relative-caret-position="588">
+          <caret line="242" column="47" selection-start-line="242" selection-start-column="47" selection-end-line="242" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#span#1;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#2;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#Card#0;n#Card#0;n#div#0;n#Panel#0;n#Collapse#0;n#div#0;n#Col#0;n#Row#0;n#template#0;n#!!top" expanded="true" />
             <element signature="e#4998#5067#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/dashBoard/myEvents.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="181" column="28" selection-start-line="181" selection-start-column="28" selection-end-line="181" selection-end-column="28" />
+          <folding>
+            <element signature="e#2309#2378#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/Event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="91" column="62" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/actors/UserEventManager.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="116" column="29" selection-start-line="116" selection-start-column="29" selection-end-line="116" selection-end-column="29" />
         </state>
       </provider>
     </entry>

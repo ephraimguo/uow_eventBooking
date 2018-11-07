@@ -86,7 +86,7 @@
                   Edit This Event
                 </Button>
                 <Button type="error"
-                        @click=""
+                        @click="removeEvent(item)"
                         class="cal-event-btn" >
                   Remove This Event
                 </Button>
@@ -235,6 +235,12 @@
         else if(updateInfo.hasOwnProperty('error')){
           this.$Message.error('Update failed');
         }
+      },
+
+      async removeEvent(event){
+        console.log('\n\n ====== EventList comp <|-- removeEvent() ===== \n', event, '\n -----------------');
+        const eventReturn = (await axios.post('/event/removeEvent', event)).data;
+        console.log('\n\n ====== EventList comp <|-- removeEvent() event Return===== \n', eventReturn, '\n -----------------');
       },
 
       checkPromocode(event, inputTag, refName) {

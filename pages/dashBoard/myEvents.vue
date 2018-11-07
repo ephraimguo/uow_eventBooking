@@ -176,12 +176,15 @@
       },
 
       async removeEvent(event){
-        console.log('branch out lalala');
+        console.log('\n\n ====== myEvent <|-- removeEvent() ===== \n', event, '\n -----------------');
+        const eventReturn = (await axios.post('/event/removeEvent', {event})).data;
+        console.log('\n\n ====== myEvent <|-- removeEvent() event Return===== \n', eventReturn, '\n -----------------');
+        this.initMyEvents();
       },
 
       async onEditEventModalPop(item) {
         this.$store.commit('setEditingEvent', item);
-        console.log('\n\n ======== EventList <|-- onEditEventModalPop() $store editingEvent======== \n',
+        console.log('\n\n ======== myEvent <|-- onEditEventModalPop() $store editingEvent======== \n',
           this.$store.state.editingEvent, '\n -------------------');
         this.showEditCurrentEventModal = true;
       },

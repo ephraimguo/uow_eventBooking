@@ -38,7 +38,7 @@ module.exports = class UserEventManager extends Actor {
       this.$({eventId, adminActorId});
     }
     else {
-      throw {error: "event not found, something worng, please email the organiser"}
+      throw {error: "event not found, something wrong, please email the organiser"}
     }
   }
 

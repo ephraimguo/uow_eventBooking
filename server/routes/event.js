@@ -88,4 +88,57 @@ router.post('/updateEventRevenue', async function(req, res){
   res.send({eventId, hasPromocode});
 });
 
+router.post('/removeEvent', async function(req, res) {
+
+  const {event} = req.body;
+  const eventId = event.id;
+
+  const eventActor = await req.$domain.get('Event', eventId);
+  const eventUv = await req.$domain.get('UniqueValidator', 'Event');
+
+  let managerList = [];
+
+  console.log('x1');
+
+  req.dbs.UserEventManager.find({bookedEvents:{$in: [eventId]}}, function(err, managers) {
+    if(!!err) {
+      // res.send('/event/removeEvent/ <|-- ERR');
+      managerList = ['/event/removeEvent/ <|-- ERR'];
+    }
+    else if(!managers) {
+      // res.send('/event/removeEvent/ <|-- no manager found ');
+      managerList = ['/event/removeEvent/ <|-- no manager found'];
+    }
+    else {
+
+      // for(let manager of managers) {
+      //   managerList.push(manager);
+      // }
+      managerList = managers;
+    }
+  });
+
+  console.log('x2', managerList);
+
+  if(!!managerList && managerList[0].hasOwnProperty('bookedEvents')){
+
+    for(let man of managerList) {
+      const man = await req.$domain.get('UserEventManager', man.id);
+      await man.unBookEvent(eventId, req.session.authUser.id);
+    }
+
+    await eventUv.giveup('startTimeVenueRoomId',moment(eventActor.data.startTimeRaw).format('X') + eventActor.data.venue + eventActor.data.roomId);
+    await eventActor.remove();
+
+    console.log('x3');
+    res.send(managerList);
+  }
+  else {
+    await eventActor.remove();
+    console.log('x4');
+    res.send(managerList);
+  }
+
+});
+
 module.exports = router;

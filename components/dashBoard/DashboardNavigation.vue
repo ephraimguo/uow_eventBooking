@@ -46,13 +46,13 @@
             </span>
           </MenuItem>
 
-          <MenuItem name="4"
-                    to="/dashBoard/management">
-            <span @click="toggleShow">
-              <Icon type="md-leaf" />
-            Manage Events
-            </span>
-          </MenuItem>
+          <!--<MenuItem name="4"-->
+                    <!--to="/dashBoard/management">-->
+            <!--<span @click="toggleShow">-->
+              <!--<Icon type="md-leaf" />-->
+            <!--Manage Events-->
+            <!--</span>-->
+          <!--</MenuItem>-->
 
         </MenuGroup>
       </Menu>
