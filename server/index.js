@@ -3,6 +3,8 @@ const https = require("https");
 const fs = require('fs');
 const svgCaptcha = require('svg-captcha');
 
+
+
 if(process.env.CLEAR){
   const mongojs = require('mongojs');
   mongojs('uowEventBooking').dropDatabase();
@@ -101,6 +103,7 @@ if (config.dev) {
 app.use(router);
 // Give nuxt middleware to express
 app.use(nuxt.render);
+
 
 app.listen(port)
 console.log('Server listening on ' + host + ':' + port);

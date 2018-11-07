@@ -17,6 +17,12 @@
         <Icon type="ios-construct" />
         Dash Board
       </MenuItem>
+      <MenuItem v-if="!!$store.state.authUser"
+                name="contactUs"
+                :to="{path:'/contactUs'}">
+        <Icon type="ios-call" />
+        Contact Us
+      </MenuItem>
 
       <MenuItem v-if="$route.path.includes('/dashBoard') && !!$store.state.authUser"
                 name="drawer-trigger" >

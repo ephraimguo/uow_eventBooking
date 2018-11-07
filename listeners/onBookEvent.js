@@ -1,4 +1,4 @@
-
+const {sendEmail} = require('../entries/mailer/mailerConfig');
 
 module.exports = function({domain}) {
   domain.on({actorType:'UserEventManager', type: 'bookEvent'}, async function(event){
