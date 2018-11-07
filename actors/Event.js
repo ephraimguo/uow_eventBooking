@@ -168,10 +168,12 @@ module.exports = class Event extends Actor {
         }
       },
       updateSeats(json, event){
+
+        const {quantity, adminActorId} = event.data;
         return {
-          seatTaken: json.seatTaken + event.data.quantity,
+          seatTaken: Number(json.seatTaken)+ Number(quantity),
           lastEditedAt: moment().format('X'),
-          lastEditedBy: event.data.adminActorId
+          lastEditedBy: adminActorId
         }
       },
       updateRevenue(json, event) {

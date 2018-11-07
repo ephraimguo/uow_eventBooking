@@ -12,13 +12,14 @@ module.exports = function({domain}) {
     sendEmail(adminActor.data.perEmail, 'Event Booked Successfully',
       `
       <h3>${eventActor.data.title}</h3>
-      <p>Time: ${moment(eventActor.data.startTime).format('DD-MM-YYYY HH:mm')}</p>
-      <p>Registered Count: ${eventActor.data.seatTaken}</p>
+      <p>Time: ${moment(eventActor.data.startTimeRaw).format('DD-MM-YYYY HH:mm')}</p>
+      <p>Address: ${eventActor.data.venue}: ${eventActor.data.roomId}</p>
       `
     );
 
     try{
       await eventActor.updateSeats(1, adminActorId);
+      console.log('\n\n ======= Listener <|-- onBookEvent ====== \n');
     }
     catch(err) {
       throw {err}

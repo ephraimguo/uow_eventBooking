@@ -21,7 +21,7 @@
           <p>Time Start: {{$moment(item.startTimeRaw).format('DD-MM-YYYY HH:mm')}}</p>
           <p>Dressing Code: {{item.dressCode}}</p>
           <p>Address: {{item.venue}} {{item.roomId}}</p>
-          <p>Seat Left: {{item.capacity - item.seatTaken}}</p>
+          <p>Seat Left: {{item.seatTaken}} / {{item.capacity}}</p>
           <p>Price: {{item.eventPrice}}</p>
           <p v-if="$store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'">Revenue: {{item.revenue.toFixed(2)}}</p>
           <div>
