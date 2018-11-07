@@ -23,6 +23,7 @@
           <p>Address: {{item.venue}} {{item.roomId}}</p>
           <p>Seat Left: {{item.capacity - item.seatTaken}}</p>
           <p>Price: {{item.eventPrice}}</p>
+          <p v-if="$store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'">Revenue: {{item.revenue.toFixed(2)}}</p>
           <div>
             <Button v-if="$store.state.authUser.role=='student'" @click="cancelEvent(item)">cancel event</Button>
             <Button v-if="$store.state.authUser.role=='cio' || $store.state.authUser.role=='staff'"
