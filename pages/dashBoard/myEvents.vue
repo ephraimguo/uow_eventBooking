@@ -9,7 +9,7 @@
              v-if="!!$store.state.authUser && $store.state.authUser.role=='student'">
       Registered events
     </Divider>
-    <Row>
+    <Row v-if="!!myEventList">
       <Col v-for="(item, index) of myEventList" :key="'myEvent'+index" class="my-event-card" span="8" offset="2">
         <Card>
           <p>Title: {{item.title}}</p>
@@ -202,7 +202,6 @@
         else if(updateInfo.hasOwnProperty('error')){
           this.$Message.error('Update failed');
         }
-
         this.initMyEvents();
       }
     }

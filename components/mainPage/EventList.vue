@@ -44,6 +44,10 @@
             <p class="eventContent">Capacity: {{item.capacity}} </p>
             <p class="eventContent">Attendance: {{item.seatTaken}} / {{item.capacity}}</p>
             <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
+            <p v-if="!!$store.state.authUser && ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio') && !!item.promoCode"
+               class="eventContent">
+              Promo Code: {{item.promoCode}}
+            </p>
             <div class="eventContent" style="width:100%">
               <Input v-if="(!!item.promoCode && $store.state.authUser.role == 'student')"
                      placeholder="enter the promo code"
