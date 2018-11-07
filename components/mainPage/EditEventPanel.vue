@@ -89,7 +89,7 @@
       </FormItem>
 
       <FormItem label="Event Capacity" prop="capacity">
-        <Select label="Which room is to be taken?" v-model="editingEventInfo.capacity" style="width:100%">
+        <Select label="How many people will be there roughly?" v-model="editingEventInfo.capacity" style="width:100%">
           <Option
               v-for="(item, index) in capacity"
               :value="item" :key="index">

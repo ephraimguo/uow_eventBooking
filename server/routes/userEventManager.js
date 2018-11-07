@@ -1,5 +1,6 @@
 const Router = require('express').Router;
 const router = Router();
+const seatInterceptor = require('../../entries/interceptor/seatInterceptor');
 
 router.post('/queryById', async function(req, res) {
   console.log('\n\n ========= /userEeventManager/queryById/ ======== \n',
@@ -11,7 +12,7 @@ router.post('/queryById', async function(req, res) {
   res.send({userEventManager});
 });
 
-router.post('/bookEvent', async function(req, res) {
+router.post('/bookEvent',seatInterceptor['booking'] ,async function(req, res) {
   const {eventId, userActorId ,adminActorId} = req.body;
   console.log('\n\n ====== userEventManager/bookEvent/ ======\n',
     req.body, '\n ---------------------');
@@ -30,7 +31,7 @@ router.post('/bookEvent', async function(req, res) {
   }
 });
 
-router.post('/unBookEvent', async function(req, res) {
+router.post('/unBookEvent',seatInterceptor.unBooking ,async function(req, res) {
   const {eventId, userActorId ,adminActorId} = req.body;
   console.log('\n\n ====== userEventManager/unBookEvent/ ======\n',
     req.body, '\n ---------------------');

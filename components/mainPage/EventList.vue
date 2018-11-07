@@ -62,8 +62,15 @@
                          type="primary"
                          class="cal-event-btn"
                          @click="bookingEvent(item)">
-                  Register This Event
+                  Register This Event <span v-if="item.eventPrice==0">(Free Event)</span>
                 </Button>
+
+                <!--<Button v-else-->
+                        <!--class="cal-event-btn"-->
+                        <!--type="primary"-->
+                        <!--@click="showPaymentPanel = true">-->
+                  <!--Register This Event-->
+                <!--</Button>-->
               </p>
               <ButtonGroup v-if="!!$store.state.authUser &&
                                  ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio')"
@@ -75,7 +82,7 @@
                   Edit This Event
                 </Button>
                 <Button type="error"
-                        @click="showRemoveEventModal = true"
+                        @click=""
                         class="cal-event-btn" >
                   Remove This Event
                 </Button>
@@ -124,11 +131,12 @@
       <p>Key In the title of the event to remove</p>
     </Modal>
 
-    <Modal title="No worries, you will be registered after payment"
-           ok-text="Confirm booking"
-           v-model="showPaymentPanel">
-
-    </Modal>
+    <!--<Modal title="No worries, you will be registered after payment"-->
+           <!--ok-text="Confirm booking and make payment"-->
+           <!--footer-hide-->
+           <!--v-model="showPaymentPanel">-->
+      <!--<Input number placeholder="Pay & Book" @on-enter="checkPayment" v-model="paymentAmount"></Input>-->
+    <!--</Modal>-->
 
   </Row>
 </template>
@@ -150,7 +158,8 @@
         showRegForOthersModal: false,
         showEditCurrentEventModal: false,
         showRemoveEventModal: false,
-        showPaymentPanel: false
+        showPaymentPanel: false,
+        paymentAmount: 0
       }
     },
     async fetch({store}){
@@ -164,6 +173,7 @@
         // const eventId = event.id;
         if(!!event.promoCode){
           if(event.promoCode == this.tempPromoCode){
+
             console.log('\n\n ========= EventList <|-- bookingEvent() this.tempPromoCode ======= \n',
               this.tempPromoCode,'\n -------------------');
             this.tempPromoCode = '';
@@ -241,7 +251,7 @@
           this.tempPromoCode = event.promoCode;
           this.$Message.error('Sorry, this is not the promo code');
         }
-      }
+      },
      }
   }
 </script>
