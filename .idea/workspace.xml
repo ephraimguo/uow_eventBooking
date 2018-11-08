@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17ef1056-31c2-4e59-844f-4b703d4e8711" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/uowMap.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/uowPost.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/contactUs.vue" beforeDir="false" afterPath="$PROJECT_DIR$/pages/contactUs.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -63,7 +60,7 @@
           <entry key="gitignore" value="16" />
           <entry key="js" value="18792" />
           <entry key="json" value="381" />
-          <entry key="vue" value="27271" />
+          <entry key="vue" value="27379" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -72,7 +69,7 @@
           <entry key="JSON" value="381" />
           <entry key="JavaScript" value="18787" />
           <entry key="PLAIN_TEXT" value="16" />
-          <entry key="Vue.js" value="27271" />
+          <entry key="Vue.js" value="27379" />
         </counts>
       </usages-collector>
     </session>
@@ -146,8 +143,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/contactUs.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="700">
-              <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+            <state relative-caret-position="612">
+              <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -504,12 +501,12 @@
       <workItem from="1541559058106" duration="21815000" />
       <workItem from="1541655438689" duration="5099000" />
       <workItem from="1541679873184" duration="1070000" />
-      <workItem from="1541682331061" duration="1241000" />
+      <workItem from="1541682331061" duration="1568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175687000" />
+    <option name="totallyTimeSpent" value="176014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="987" extended-state="6" />
@@ -528,7 +525,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.26429343" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50026923" side_tool="true" weight="0.26968718" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49973074" weight="0.2583519" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49973074" weight="0.25810057" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -872,8 +869,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/contactUs.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="35" column="31" lean-forward="true" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        <state relative-caret-position="612">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
         </state>
       </provider>
     </entry>
