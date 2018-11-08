@@ -1,9 +1,10 @@
 <template>
   <Row>
 
-
-
     <Col span="18" offset="3">
+      <div>
+        <Button long type="info" @click="getAllEvents()">View All Events</Button>
+      </div>
       <div style="background:#eee;padding: 20px">
 
         <Collapse v-for="(item, index) of $store.state.calEventList" :key="'accordion'+index">
@@ -43,7 +44,7 @@
             <p class="eventContent">Address: {{item.venue}} - {{item.roomId}} </p>
             <p class="eventContent">Capacity: {{item.capacity}} </p>
             <p class="eventContent">Attendance: {{item.seatTaken}} / {{item.capacity}}</p>
-            <p class="eventContent">Price: {{item.eventPrice}} / pax</p>
+            <p class="eventContent" :id="'price-tag'+index">Price: {{item.eventPrice}} / pax</p>
             <p v-if="!!$store.state.authUser && ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio') && !!item.promoCode"
                class="eventContent">
               Promo Code: {{item.promoCode}}
@@ -53,7 +54,7 @@
                      placeholder="enter the promo code"
                      :disabled="$store.state.authUserManager.bookedEvents.includes(item.id)"
                      ref="promoCodeTag"
-                     @on-enter="checkPromocode(item, $event.target, 'promoCodeTag')"/>
+                     @on-enter="checkPromocode(item, $event.target, 'promoCodeTag', index)"/>
               <p v-if="!!$store.state.authUser && $store.state.authUser.role == 'student'">
                 <Button v-if="$store.state.authUserManager.bookedEvents.includes(item.id)"
                         type="error"
@@ -78,18 +79,17 @@
               </p>
               <ButtonGroup v-if="!!$store.state.authUser &&
                                  ($store.state.authUser.role == 'staff' || $store.state.authUser.role == 'cio')"
-                           size="small"
-                           shape="circle">
+                           size="small">
                 <Button type="warning"
                         @click="onEditEventModalPop(item)"
                         class="cal-event-btn">
                   Edit This Event
                 </Button>
-                <Button type="error"
-                        @click="removeEvent(item)"
-                        class="cal-event-btn" >
-                  Remove This Event
-                </Button>
+                <!--<Button type="error"-->
+                        <!--@click="removeEvent(item)"-->
+                        <!--class="cal-event-btn" >-->
+                  <!--Remove This Event-->
+                <!--</Button>-->
               </ButtonGroup>
             </div>
           </Card>
@@ -124,16 +124,16 @@
       <EditEventPanel @updateEventInfo="updateEventInfo()"/>
     </Modal>
 
-    <Modal title="Oh no, are you sure?"
-        v-model="showRemoveEventModal"
-        ok-text="remove it"
-        cancel-text="cancel remove"
-        :mask-closable="false"
-        :closable="false">
-      <p>Key In the title of the event to remove</p>
-      <p>Key In the title of the event to remove</p>
-      <p>Key In the title of the event to remove</p>
-    </Modal>
+    <!--<Modal title="Oh no, are you sure?"-->
+        <!--v-model="showRemoveEventModal"-->
+        <!--ok-text="remove it"-->
+        <!--cancel-text="cancel remove"-->
+        <!--:mask-closable="false"-->
+        <!--:closable="false">-->
+      <!--<p>Key In the title of the event to remove</p>-->
+      <!--<p>Key In the title of the event to remove</p>-->
+      <!--<p>Key In the title of the event to remove</p>-->
+    <!--</Modal>-->
 
     <!--<Modal title="No worries, you will be registered after payment"-->
            <!--ok-text="Confirm booking and make payment"-->
@@ -167,12 +167,16 @@
       }
     },
     async fetch({store}){
-
     },
     // mounted() {
     //   this.$store.commit('setCalEventList', )
     // },
     methods: {
+      async getAllEvents() {
+        const eventList = (await axios.post('/event/queryAll')).data;
+        this.$store.commit('setCalEventList', eventList);
+      },
+
       async bookingEvent(event) {
         // const eventId = event.id;
         if(!!event.promoCode){
@@ -237,13 +241,13 @@
         }
       },
 
-      async removeEvent(event){
-        console.log('\n\n ====== EventList comp <|-- removeEvent() ===== \n', event, '\n -----------------');
-        const eventReturn = (await axios.post('/event/removeEvent', event)).data;
-        console.log('\n\n ====== EventList comp <|-- removeEvent() event Return===== \n', eventReturn, '\n -----------------');
-      },
+      // async removeEvent(event){
+      //   console.log('\n\n ====== EventList comp <|-- removeEvent() ===== \n', event, '\n -----------------');
+      //   const eventReturn = (await axios.post('/event/removeEvent', event)).data;
+      //   console.log('\n\n ====== EventList comp <|-- removeEvent() event Return===== \n', eventReturn, '\n -----------------');
+      // },
 
-      checkPromocode(event, inputTag, refName) {
+      checkPromocode(event, inputTag, refName, index) {
         if(inputTag.value == event.promoCode){
           console.log('\n ===== successfully verified promo code =====');
           this.$Message.success('Yay, promocode verified successfully');
@@ -251,6 +255,9 @@
           this.tempPromoCode = event.promoCode;
           console.log('\n\n ====== this.$refs.refName.disabled ===== \n', this.$refs[refName].disabled, '\n ------');
           inputTag.disabled = true;
+
+          let priceTag = document.querySelector('#price-tag'+index);
+          priceTag.innerHTML = `<span style="font-size:20px;">After Discount Price: ${event.eventPrice * 0.8}</span>`
         }
         else {
           console.log('\n\n ===== EvenList <|-- checkPromocode =====\n event:',

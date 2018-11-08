@@ -2,6 +2,13 @@ const Router = require('express').Router;
 const router = Router();
 const moment = require('moment');
 
+
+router.post('/queryAll', async function(req, res) {
+  req.dbs.Event.find({}, function(err, events) {
+    res.status(200).send(events);
+  });
+});
+
 router.post('/queryByDate', async function(req, res){
   const {currentDateRaw} = req.body;
   // const tempDate = new Date(currentDateRaw);
