@@ -179,6 +179,9 @@
         console.log('\n\n ====== myEvent <|-- removeEvent() ===== \n', event, '\n -----------------');
         const eventReturn = (await axios.post('/event/removeEvent', {event})).data;
         console.log('\n\n ====== myEvent <|-- removeEvent() event Return===== \n', eventReturn, '\n -----------------');
+        let tempArr = new Set(this.myEventList);
+        tempArr.delete(event);
+        this.myEventList = [...tempArr];
         this.initMyEvents();
       },
 

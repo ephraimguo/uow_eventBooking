@@ -93,6 +93,8 @@ router.post('/removeEvent', async function(req, res) {
   const {event} = req.body;
   const eventId = event.id;
 
+  const adminActorId = req.session.authUser.id;
+
   const eventActor = await req.$domain.get('Event', eventId);
   const eventUv = await req.$domain.get('UniqueValidator', 'Event');
 
@@ -100,44 +102,46 @@ router.post('/removeEvent', async function(req, res) {
 
   console.log('x1');
 
-  req.dbs.UserEventManager.find({bookedEvents:{$in: [eventId]}}, function(err, managers) {
+  req.dbs.UserEventManager.find({bookedEvents:{$all: [eventId]}}, async function(err, managers) {
     if(!!err) {
-      // res.send('/event/removeEvent/ <|-- ERR');
-      managerList = ['/event/removeEvent/ <|-- ERR'];
+      // res.send('/event/removeEvent/ <|-- ERR', err);
+      res.status(200).send(err);
     }
     else if(!managers) {
-      // res.send('/event/removeEvent/ <|-- no manager found ');
-      managerList = ['/event/removeEvent/ <|-- no manager found'];
+      // managerList = ['/event/removeEvent/ <|-- no manager found'];
+      res.status(200).send('/event/removeEvent/ <|-- no manager found');
     }
     else {
 
-      // for(let manager of managers) {
-      //   managerList.push(manager);
+      console.log('x2', managers);
+
+      // managerList = managers;
+
+      if(!!managers.length){
+
+        for(let man of managers) {
+          const manActor = await req.$domain.get('UserEventManager', man.id);
+          await manActor.unBookEvent(eventId, adminActorId);
+        }
+
+        // await eventUv.giveup('startTimeVenueRoomId',moment(eventActor.data.startTimeRaw).format('X') + eventActor.data.venue + eventActor.data.roomId);
+        // await eventActor.remove({managers});
+
+        console.log('x3');
+      }
+      // else {
+      console.log('x3.5');
+
+      await eventUv.giveup('startTimeVenueRoomId',moment(eventActor.data.startTimeRaw).format('X') + eventActor.data.venue + eventActor.data.roomId);
+      await eventActor.remove();
+      console.log('x4');
+      res.send(managers);
       // }
-      managerList = managers;
+
+      // console.log('x0', managers);
+      // managerList = managers;
     }
   });
-
-  console.log('x2', managerList);
-
-  if(!!managerList && managerList[0].hasOwnProperty('bookedEvents')){
-
-    for(let man of managerList) {
-      const man = await req.$domain.get('UserEventManager', man.id);
-      await man.unBookEvent(eventId, req.session.authUser.id);
-    }
-
-    await eventUv.giveup('startTimeVenueRoomId',moment(eventActor.data.startTimeRaw).format('X') + eventActor.data.venue + eventActor.data.roomId);
-    await eventActor.remove();
-
-    console.log('x3');
-    res.send(managerList);
-  }
-  else {
-    await eventActor.remove();
-    console.log('x4');
-    res.send(managerList);
-  }
 
 });
 
