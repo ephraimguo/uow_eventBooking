@@ -8,7 +8,7 @@
             format="YYYY-MM-DD"
             formatted="DD-MM-YYYY HH:mm"
             label="Choose date"
-            enable-button-validate
+            without-input
             disable-time/>
       </no-ssr>
     </Card>
