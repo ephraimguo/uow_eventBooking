@@ -57,8 +57,8 @@ module.exports = class User extends Actor{
   get updater(){
     return {
       updateInfo(json,event){
-        const {perEmail, role, fullName, phoneNo} = event.data;
-        return {perEmail, role, fullName, phoneNo}
+        const {perEmail, fullName, phoneNo} = event.data;
+        return {perEmail, fullName, phoneNo}
       }
     }
   }
